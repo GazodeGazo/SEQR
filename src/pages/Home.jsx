@@ -1,7 +1,22 @@
 import { Link } from 'react-router-dom'
 import { AlertTriangle, Sparkles, Check } from 'lucide-react'
 
+// Composant placeholder pour les stats pré-launch
+const StatPlaceholder = ({ label }) => (
+  <div className="text-center p-6 bg-white rounded-xl border border-gray-100">
+    <div className="text-3xl font-bold text-gray-300 mb-2">—</div>
+    <div className="text-gray-500 text-sm">{label}</div>
+  </div>
+)
+
 const Home = () => {
+  const scrollToHowItWorks = () => {
+    const element = document.getElementById('how-it-works')
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   return (
     <div className="bg-transparent">
       {/* Hero Section */}
@@ -10,7 +25,7 @@ const Home = () => {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full mb-8 border border-gray-200">
             <span className="w-2 h-2 bg-[#0052FF] rounded-full animate-pulse" />
-            <span className="text-sm font-medium text-gray-700">Built on Base</span>
+            <span className="text-sm font-medium text-gray-700">Launching Soon on Base</span>
           </div>
 
           {/* Title */}
@@ -27,46 +42,36 @@ const Home = () => {
 
           {/* Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link to="/stake">
-              <button className="min-w-[180px] px-8 py-4 bg-[#0052FF] text-white font-semibold rounded-xl text-lg hover:bg-[#0041CC] transition-colors shadow-lg">
-                Launch App
-              </button>
-            </Link>
-            <Link to="/docs">
-              <button className="min-w-[180px] px-8 py-4 bg-white/90 backdrop-blur-sm text-gray-900 font-semibold rounded-xl border border-gray-200 hover:border-gray-300 text-lg shadow-sm">
-                Read Docs
-              </button>
-            </Link>
+            <button 
+              disabled
+              className="min-w-[180px] px-8 py-4 bg-gray-300 text-gray-500 font-semibold rounded-xl text-lg cursor-not-allowed shadow-sm"
+            >
+              Coming Soon
+            </button>
+            <button 
+              onClick={scrollToHowItWorks}
+              className="min-w-[180px] px-8 py-4 bg-white/90 backdrop-blur-sm text-gray-900 font-semibold rounded-xl border border-gray-200 hover:border-gray-300 text-lg shadow-sm transition-colors"
+            >
+              Learn More
+            </button>
           </div>
         </div>
       </section>
 
-      {/* Stats Section */}
+      {/* Stats Section - Pre-launch placeholders */}
       <section className="py-16 bg-white/90 backdrop-blur-sm border-y border-gray-200">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-[#0052FF] mb-1">$12.4M</div>
-              <div className="text-gray-500 text-sm">Total Value Locked</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-[#0052FF] mb-1">847K</div>
-              <div className="text-gray-500 text-sm">SEQR Staked</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-[#0052FF] mb-1">18.5%</div>
-              <div className="text-gray-500 text-sm">Current APY</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-[#0052FF] mb-1">4,821+</div>
-              <div className="text-gray-500 text-sm">Token Holders</div>
-            </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <StatPlaceholder label="Total Value Locked" />
+            <StatPlaceholder label="SEQR Staked" />
+            <StatPlaceholder label="Unique Stakers" />
+            <StatPlaceholder label="ETH Distributed" />
           </div>
         </div>
       </section>
 
       {/* How It Works */}
-      <section className="py-20 bg-white">
+      <section id="how-it-works" className="py-20 bg-white scroll-mt-20">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-4xl font-bold text-center text-gray-900 mb-4">How It Works</h2>
           <p className="text-gray-500 text-center mb-12">Start earning sequencer revenue in four simple steps</p>
@@ -90,8 +95,28 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Problem & Solution */}
+      {/* Sequencer Progress - Pre-launch state */}
       <section className="py-20 bg-gray-50">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="bg-white rounded-2xl p-8 md:p-12 text-center border border-gray-200">
+            <h3 className="text-2xl font-bold text-gray-900 mb-3">Sequencer Goal</h3>
+            <p className="text-gray-500 mb-6 max-w-md mx-auto">
+              Track our progress towards accumulating enough $BASE to operate a Base sequencer node
+            </p>
+            <div className="flex justify-between text-sm mb-2 max-w-md mx-auto">
+              <span className="text-gray-500">Progress</span>
+              <span className="text-gray-400">— / 32 ETH</span>
+            </div>
+            <div className="bg-gray-200 rounded-full h-4 mb-4 max-w-md mx-auto overflow-hidden">
+              <div className="bg-[#0052FF] h-4 rounded-full transition-all duration-500" style={{ width: '0%' }}></div>
+            </div>
+            <p className="text-sm text-gray-400">Progress tracking begins at launch</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Problem & Solution */}
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-8">
             {/* Problem */}
@@ -144,35 +169,35 @@ const Home = () => {
       </section>
 
       {/* Tokenomics */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-4xl font-bold text-center text-gray-900 mb-4">Tokenomics</h2>
           <p className="text-gray-500 text-center mb-12">Fair launch, no team allocation, 100% community driven</p>
           
           <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-4 max-w-5xl mx-auto">
-            <div className="p-5 rounded-xl bg-gray-50 border border-gray-100 text-center">
+            <div className="p-5 rounded-xl bg-white border border-gray-100 text-center">
               <div className="text-lg font-bold text-gray-900 mb-1">1B</div>
               <div className="text-gray-500 text-xs">Total Supply</div>
             </div>
-            <div className="p-5 rounded-xl bg-gray-50 border border-gray-100 text-center">
+            <div className="p-5 rounded-xl bg-white border border-gray-100 text-center">
               <div className="text-lg font-bold text-[#0052FF] mb-1">2%</div>
               <div className="text-gray-500 text-xs">Staking Rewards</div>
             </div>
-            <div className="p-5 rounded-xl bg-gray-50 border border-gray-100 text-center">
+            <div className="p-5 rounded-xl bg-white border border-gray-100 text-center">
               <div className="text-lg font-bold text-[#0052FF] mb-1">1%</div>
               <div className="text-gray-500 text-xs">Treasury</div>
             </div>
-            <div className="p-5 rounded-xl bg-gray-50 border border-gray-100 text-center">
+            <div className="p-5 rounded-xl bg-white border border-gray-100 text-center">
               <div className="text-lg font-bold text-orange-600 mb-1">Burned</div>
               <div className="text-gray-500 text-xs">LP Tokens</div>
             </div>
-            <div className="p-5 rounded-xl bg-gray-50 border border-gray-100 text-center">
+            <div className="p-5 rounded-xl bg-white border border-gray-100 text-center">
               <div className="text-lg font-bold text-green-600 flex items-center justify-center gap-1 mb-1">
                 Renounced <Check size={14} />
               </div>
               <div className="text-gray-500 text-xs">Ownership</div>
             </div>
-            <div className="p-5 rounded-xl bg-gray-50 border border-gray-100 text-center">
+            <div className="p-5 rounded-xl bg-white border border-gray-100 text-center">
               <div className="text-lg font-bold text-[#0052FF] mb-1">100%</div>
               <div className="text-gray-500 text-xs">Fair Launch</div>
             </div>
@@ -181,22 +206,28 @@ const Home = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-6">
           <div className="p-12 rounded-3xl bg-[#0052FF] text-center">
-            <h2 className="text-3xl font-bold text-white mb-4">Ready to Start Earning?</h2>
-            <p className="text-white/80 mb-8">Join the community and earn your share of Base sequencer revenue.</p>
+            <h2 className="text-3xl font-bold text-white mb-4">Be First to Know</h2>
+            <p className="text-white/80 mb-8">Follow us on Twitter for launch announcements and updates.</p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link to="/stake">
-                <button className="px-8 py-4 bg-white text-[#0052FF] font-semibold rounded-xl hover:bg-gray-100 transition-colors">
-                  Launch App
+              <a 
+                href="https://x.com/seqrbase" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="px-8 py-4 bg-white text-[#0052FF] font-semibold rounded-xl hover:bg-gray-100 transition-colors inline-flex items-center gap-2"
+              >
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+                Follow @seqrbase
+              </a>
+              <Link to="/docs">
+                <button className="px-8 py-4 bg-white/10 text-white font-semibold rounded-xl border border-white/20 hover:bg-white/20 transition-colors">
+                  Read Documentation
                 </button>
               </Link>
-              <a href="https://app.uniswap.org/swap?chain=base" target="_blank" rel="noopener noreferrer">
-                <button className="px-8 py-4 bg-white/10 text-white font-semibold rounded-xl border border-white/20 hover:bg-white/20 transition-colors">
-                  Buy on Uniswap
-                </button>
-              </a>
             </div>
           </div>
         </div>

@@ -1,15 +1,18 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Wallet, TrendingUp, Clock, ArrowUpRight, ArrowDownLeft, Info } from 'lucide-react'
+import { Wallet, TrendingUp, Clock, ArrowUpRight, ArrowDownLeft, Info, ExternalLink } from 'lucide-react'
+import { CONTRACTS, isProtocolLive } from '../config/contracts'
 
 const Stake = () => {
   const [activeTab, setActiveTab] = useState('stake')
   const [amount, setAmount] = useState('')
+  
+  const isLive = isProtocolLive()
 
   const globalStats = [
-    { label: 'Total Staked', value: '—', icon: Wallet },
-    { label: 'Current APY', value: '—', icon: TrendingUp },
-    { label: 'Next Distribution', value: '—', icon: Clock },
+    { label: 'Total Staked', value: isLive ? '—' : '—', icon: Wallet },
+    { label: 'Current APY', value: isLive ? '—' : '—', icon: TrendingUp },
+    { label: 'Next Distribution', value: isLive ? '—' : '—', icon: Clock },
   ]
 
   return (
@@ -21,8 +24,34 @@ const Stake = () => {
           animate={{ opacity: 1, y: 0 }}
           className="mb-8"
         >
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">Stake SEQR</h1>
-          <p className="text-gray-500">Stake your tokens to earn sequencer revenue</p>
+          <div className="flex items-center justify-between flex-wrap gap-4">
+            <div>
+              <h1 className="text-4xl font-bold text-gray-900 mb-2">Stake {CONTRACTS.SYMBOL || 'SEQR'}</h1>
+              <p className="text-gray-500">Stake your tokens to earn sequencer revenue</p>
+            </div>
+            {isLive && (
+              <div className="flex gap-3">
+                <a 
+                  href={CONTRACTS.DEXSCREENER} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-[#0052FF]/10 text-[#0052FF] rounded-lg text-sm font-medium hover:bg-[#0052FF]/20 transition-colors"
+                >
+                  <ExternalLink size={16} />
+                  DexScreener
+                </a>
+                <a 
+                  href={CONTRACTS.BASESCAN_TOKEN} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-200 transition-colors"
+                >
+                  <ExternalLink size={16} />
+                  Basescan
+                </a>
+              </div>
+            )}
+          </div>
         </motion.div>
 
         {/* Global Stats */}
@@ -63,7 +92,7 @@ const Stake = () => {
                 <div className="p-4 rounded-xl bg-gray-50 border border-gray-100">
                   <div className="text-sm text-gray-500 mb-1">Staked Balance</div>
                   <div className="text-2xl font-bold text-gray-300">
-                    — <span className="text-base font-normal text-gray-400">SEQR</span>
+                    — <span className="text-base font-normal text-gray-400">{CONTRACTS.SYMBOL || 'SEQR'}</span>
                   </div>
                 </div>
 
@@ -135,7 +164,7 @@ const Stake = () => {
                   <div className="flex items-center justify-between mb-2">
                     <label className="text-sm font-medium text-gray-700">Amount</label>
                     <span className="text-sm text-gray-500">
-                      Balance: <span className="font-medium text-gray-300">— SEQR</span>
+                      Balance: <span className="font-medium text-gray-300">— {CONTRACTS.SYMBOL || 'SEQR'}</span>
                     </span>
                   </div>
                   <div className="relative">
@@ -199,10 +228,42 @@ const Stake = () => {
                   disabled
                   className="w-full py-4 rounded-xl bg-gray-200 text-gray-500 font-semibold text-lg cursor-not-allowed"
                 >
-                  {activeTab === 'stake' ? 'Stake SEQR' : 'Unstake SEQR'}
+                  {activeTab === 'stake' ? `Stake ${CONTRACTS.SYMBOL || 'SEQR'}` : `Unstake ${CONTRACTS.SYMBOL || 'SEQR'}`}
                 </button>
               </form>
             </div>
+
+            {/* Token Info - Only show when live */}
+            {isLive && (
+              <div className="mt-6 p-6 rounded-2xl bg-white border border-gray-200">
+                <h3 className="text-lg font-bold text-gray-900 mb-4">Token Info</h3>
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between py-2 border-b border-gray-100">
+                    <span className="text-gray-500">Name</span>
+                    <span className="font-medium text-gray-900">{CONTRACTS.NAME}</span>
+                  </div>
+                  <div className="flex items-center justify-between py-2 border-b border-gray-100">
+                    <span className="text-gray-500">Symbol</span>
+                    <span className="font-medium text-gray-900">${CONTRACTS.SYMBOL}</span>
+                  </div>
+                  <div className="flex items-center justify-between py-2 border-b border-gray-100">
+                    <span className="text-gray-500">Network</span>
+                    <span className="font-medium text-gray-900">{CONTRACTS.CHAIN_NAME}</span>
+                  </div>
+                  <div className="flex items-center justify-between py-2">
+                    <span className="text-gray-500">Contract</span>
+                    <a 
+                      href={CONTRACTS.BASESCAN_TOKEN} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="font-mono text-sm text-[#0052FF] hover:underline"
+                    >
+                      {CONTRACTS.TOKEN.slice(0, 6)}...{CONTRACTS.TOKEN.slice(-4)}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* Recent Transactions */}
             <div className="mt-6 p-6 rounded-2xl bg-white border border-gray-200">

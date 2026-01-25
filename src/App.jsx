@@ -1,16 +1,93 @@
-import { Suspense, lazy } from 'react'
+import { Suspense, lazy, useState, useEffect } from 'react'
 import { Routes, Route, useLocation, Link } from 'react-router-dom'
 import Home from './pages/Home'
 import Stake from './pages/Stake'
 import Treasury from './pages/Treasury'
 import Docs from './pages/Docs'
 import PrelaunchBanner from './components/ui/PrelaunchBanner'
+import { CONTRACTS, isProtocolLive } from './config/contracts'
 
 const FloatingCubes = lazy(() => import('./components/three/FloatingCubes'))
 
 function App() {
   const location = useLocation()
   const isHomePage = location.pathname === '/'
+  const isLive = isProtocolLive()
+  
+  const [walletAddress, setWalletAddress] = useState(null)
+  const [isConnecting, setIsConnecting] = useState(false)
+
+  // Check if wallet is already connected
+  useEffect(() => {
+    const checkConnection = async () => {
+      if (window.ethereum) {
+        try {
+          const accounts = await window.ethereum.request({ method: 'eth_accounts' })
+          if (accounts.length > 0) {
+            setWalletAddress(accounts[0])
+          }
+        } catch (err) {
+          console.error('Error checking wallet connection:', err)
+        }
+      }
+    }
+    checkConnection()
+
+    // Listen for account changes
+    if (window.ethereum) {
+      window.ethereum.on('accountsChanged', (accounts) => {
+        if (accounts.length > 0) {
+          setWalletAddress(accounts[0])
+        } else {
+          setWalletAddress(null)
+        }
+      })
+    }
+  }, [])
+
+  const connectWallet = async () => {
+    if (!window.ethereum) {
+      alert('Please install MetaMask to connect your wallet')
+      return
+    }
+
+    setIsConnecting(true)
+    try {
+      const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
+      if (accounts.length > 0) {
+        setWalletAddress(accounts[0])
+        
+        // Switch to Base network if needed
+        try {
+          await window.ethereum.request({
+            method: 'wallet_switchEthereumChain',
+            params: [{ chainId: '0x2105' }], // Base chainId (8453 in hex)
+          })
+        } catch (switchError) {
+          // If chain doesn't exist, add it
+          if (switchError.code === 4902) {
+            await window.ethereum.request({
+              method: 'wallet_addEthereumChain',
+              params: [{
+                chainId: '0x2105',
+                chainName: 'Base',
+                nativeCurrency: { name: 'ETH', symbol: 'ETH', decimals: 18 },
+                rpcUrls: ['https://mainnet.base.org'],
+                blockExplorerUrls: ['https://basescan.org'],
+              }],
+            })
+          }
+        }
+      }
+    } catch (err) {
+      console.error('Error connecting wallet:', err)
+    }
+    setIsConnecting(false)
+  }
+
+  const formatAddress = (address) => {
+    return `${address.slice(0, 6)}...${address.slice(-4)}`
+  }
 
   return (
     <div className="min-h-screen bg-transparent">
@@ -36,11 +113,14 @@ function App() {
             <Link to="/treasury" className={`text-sm font-medium transition-colors ${location.pathname === '/treasury' ? 'text-[#0052FF]' : 'text-gray-600 hover:text-gray-900'}`}>Treasury</Link>
             <Link to="/docs" className={`text-sm font-medium transition-colors ${location.pathname === '/docs' ? 'text-[#0052FF]' : 'text-gray-600 hover:text-gray-900'}`}>Docs</Link>
             <button 
-              disabled
-              className="px-5 py-2 bg-gray-200 text-gray-500 font-semibold rounded-xl text-sm cursor-not-allowed"
-              title="Coming soon"
+              onClick={connectWallet}
+              className={`px-5 py-2 font-semibold rounded-xl text-sm transition-colors ${
+                walletAddress 
+                  ? 'bg-green-100 text-green-700 hover:bg-green-200' 
+                  : 'bg-[#0052FF] text-white hover:bg-[#0041CC]'
+              }`}
             >
-              Connect
+              {isConnecting ? 'Connecting...' : walletAddress ? formatAddress(walletAddress) : 'Connect'}
             </button>
           </div>
         </div>
@@ -50,7 +130,7 @@ function App() {
       <main className="pt-28 relative z-10">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/stake" element={<Stake />} />
+          <Route path="/stake" element={<Stake walletAddress={walletAddress} connectWallet={connectWallet} />} />
           <Route path="/treasury" element={<Treasury />} />
           <Route path="/docs" element={<Docs />} />
         </Routes>
@@ -61,12 +141,18 @@ function App() {
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <img src="/logo.svg" alt="SEQR" className="w-8 h-8" />
-            <span className="bg-[#0052FF]/10 text-[#0052FF] text-xs px-2 py-1 rounded-full font-medium">Coming Soon</span>
+            {isLive ? (
+              <span className="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full font-medium">Live on Base</span>
+            ) : (
+              <span className="bg-[#0052FF]/10 text-[#0052FF] text-xs px-2 py-1 rounded-full font-medium">Coming Soon</span>
+            )}
           </div>
           <div className="flex items-center gap-6">
-            <a href="https://x.com/seqrbase" target="_blank" rel="noopener noreferrer" className="text-sm text-gray-500 hover:text-[#0052FF] transition-colors">Twitter</a>
-            <a href="https://app.uniswap.org/swap?chain=base" target="_blank" rel="noopener noreferrer" className="text-sm text-gray-400 cursor-not-allowed" title="Available at launch">Uniswap</a>
-            <a href="https://basescan.org" target="_blank" rel="noopener noreferrer" className="text-sm text-gray-500 hover:text-[#0052FF] transition-colors">Basescan</a>
+            <a href={CONTRACTS.TWITTER} target="_blank" rel="noopener noreferrer" className="text-sm text-gray-500 hover:text-[#0052FF] transition-colors">Twitter</a>
+            {isLive && (
+              <a href={CONTRACTS.DEXSCREENER} target="_blank" rel="noopener noreferrer" className="text-sm text-gray-500 hover:text-[#0052FF] transition-colors">DexScreener</a>
+            )}
+            <a href={CONTRACTS.BASESCAN_TOKEN} target="_blank" rel="noopener noreferrer" className="text-sm text-gray-500 hover:text-[#0052FF] transition-colors">Basescan</a>
             <Link to="/docs" className="text-sm text-gray-500 hover:text-[#0052FF] transition-colors">Docs</Link>
           </div>
           <div className="text-gray-400 text-sm">© 2025 SEQR Protocol</div>

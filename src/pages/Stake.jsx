@@ -3,17 +3,52 @@ import { motion } from 'framer-motion'
 import { Wallet, TrendingUp, Clock, ArrowUpRight, ArrowDownLeft, Info, ExternalLink } from 'lucide-react'
 import { CONTRACTS, isProtocolLive } from '../config/contracts'
 
-const Stake = () => {
+const Stake = ({ walletAddress, connectWallet }) => {
   const [activeTab, setActiveTab] = useState('stake')
   const [amount, setAmount] = useState('')
   
   const isLive = isProtocolLive()
+  const isConnected = !!walletAddress
 
   const globalStats = [
-    { label: 'Total Staked', value: isLive ? '—' : '—', icon: Wallet },
-    { label: 'Current APY', value: isLive ? '—' : '—', icon: TrendingUp },
-    { label: 'Next Distribution', value: isLive ? '—' : '—', icon: Clock },
+    { label: 'Total Staked', value: '—', icon: Wallet },
+    { label: 'Current APY', value: '—', icon: TrendingUp },
+    { label: 'Next Distribution', value: '—', icon: Clock },
   ]
+
+  const handleStake = (e) => {
+    e.preventDefault()
+    if (!isConnected) {
+      connectWallet()
+      return
+    }
+    // TODO: Implement actual staking logic
+    console.log('Staking', amount, CONTRACTS.SYMBOL)
+  }
+
+  const handleUnstake = (e) => {
+    e.preventDefault()
+    if (!isConnected) {
+      connectWallet()
+      return
+    }
+    // TODO: Implement actual unstaking logic
+    console.log('Unstaking', amount, CONTRACTS.SYMBOL)
+  }
+
+  const handleClaimRewards = () => {
+    if (!isConnected) {
+      connectWallet()
+      return
+    }
+    // TODO: Implement actual claim logic
+    console.log('Claiming rewards')
+  }
+
+  const handleMaxClick = () => {
+    // TODO: Set amount to user's balance
+    setAmount('0')
+  }
 
   return (
     <main className="pt-24 pb-16 min-h-screen bg-gray-50">
@@ -115,10 +150,15 @@ const Stake = () => {
                 </div>
 
                 <button 
-                  disabled
-                  className="w-full py-3 rounded-xl bg-gray-200 text-gray-500 font-semibold cursor-not-allowed"
+                  onClick={handleClaimRewards}
+                  className={`w-full py-3 rounded-xl font-semibold transition-colors ${
+                    isLive 
+                      ? 'bg-[#0052FF] text-white hover:bg-[#0041CC]' 
+                      : 'bg-gray-200 text-gray-500 cursor-not-allowed'
+                  }`}
+                  disabled={!isLive}
                 >
-                  Claim Rewards
+                  {isConnected ? 'Claim Rewards' : 'Connect to Claim'}
                 </button>
               </div>
             </div>
@@ -158,13 +198,13 @@ const Stake = () => {
                 </button>
               </div>
 
-              <form onSubmit={(e) => e.preventDefault()}>
+              <form onSubmit={activeTab === 'stake' ? handleStake : handleUnstake}>
                 {/* Amount Input */}
                 <div className="mb-6">
                   <div className="flex items-center justify-between mb-2">
                     <label className="text-sm font-medium text-gray-700">Amount</label>
                     <span className="text-sm text-gray-500">
-                      Balance: <span className="font-medium text-gray-300">— {CONTRACTS.SYMBOL || 'SEQR'}</span>
+                      Balance: <span className="font-medium text-gray-700">— {CONTRACTS.SYMBOL || 'SEQR'}</span>
                     </span>
                   </div>
                   <div className="relative">
@@ -173,13 +213,20 @@ const Stake = () => {
                       value={amount}
                       onChange={(e) => setAmount(e.target.value)}
                       placeholder="0.00"
-                      disabled
-                      className="w-full px-4 py-4 pr-24 rounded-xl border border-gray-200 text-2xl font-semibold text-gray-900 placeholder-gray-300 focus:outline-none focus:border-[#0052FF] focus:ring-2 focus:ring-[#0052FF]/20 transition-all disabled:bg-gray-50 disabled:cursor-not-allowed"
+                      disabled={!isLive}
+                      className={`w-full px-4 py-4 pr-24 rounded-xl border border-gray-200 text-2xl font-semibold text-gray-900 placeholder-gray-300 focus:outline-none focus:border-[#0052FF] focus:ring-2 focus:ring-[#0052FF]/20 transition-all ${
+                        !isLive ? 'bg-gray-50 cursor-not-allowed' : ''
+                      }`}
                     />
                     <button
                       type="button"
-                      disabled
-                      className="absolute right-3 top-1/2 -translate-y-1/2 px-3 py-1.5 rounded-lg bg-gray-100 text-gray-400 text-sm font-semibold cursor-not-allowed"
+                      onClick={handleMaxClick}
+                      disabled={!isLive}
+                      className={`absolute right-3 top-1/2 -translate-y-1/2 px-3 py-1.5 rounded-lg text-sm font-semibold transition-colors ${
+                        isLive 
+                          ? 'bg-[#0052FF]/10 text-[#0052FF] hover:bg-[#0052FF]/20' 
+                          : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                      }`}
                     >
                       MAX
                     </button>
@@ -225,10 +272,19 @@ const Stake = () => {
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  disabled
-                  className="w-full py-4 rounded-xl bg-gray-200 text-gray-500 font-semibold text-lg cursor-not-allowed"
+                  disabled={!isLive}
+                  className={`w-full py-4 rounded-xl font-semibold text-lg transition-colors ${
+                    isLive 
+                      ? 'bg-[#0052FF] text-white hover:bg-[#0041CC]' 
+                      : 'bg-gray-200 text-gray-500 cursor-not-allowed'
+                  }`}
                 >
-                  {activeTab === 'stake' ? `Stake ${CONTRACTS.SYMBOL || 'SEQR'}` : `Unstake ${CONTRACTS.SYMBOL || 'SEQR'}`}
+                  {!isConnected 
+                    ? 'Connect Wallet' 
+                    : activeTab === 'stake' 
+                      ? `Stake ${CONTRACTS.SYMBOL || 'SEQR'}` 
+                      : `Unstake ${CONTRACTS.SYMBOL || 'SEQR'}`
+                  }
                 </button>
               </form>
             </div>
@@ -269,7 +325,7 @@ const Stake = () => {
             <div className="mt-6 p-6 rounded-2xl bg-white border border-gray-200">
               <h3 className="text-lg font-bold text-gray-900 mb-4">Recent Transactions</h3>
               <div className="text-center py-8 text-gray-400">
-                No transactions yet
+                {isConnected ? 'No transactions yet' : 'Connect wallet to view transactions'}
               </div>
             </div>
           </motion.div>

@@ -1,53 +1,169 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Wallet, TrendingUp, Clock, ArrowUpRight, ArrowDownLeft, Info, ExternalLink } from 'lucide-react'
+import { useAccount, useReadContract } from 'wagmi'
+import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { CONTRACTS, isProtocolLive } from '../config/contracts'
 
-const Stake = ({ walletAddress, connectWallet }) => {
+// ABI minimal pour lire le balance ERC20
+const erc20Abi = [
+  {
+    name: 'balanceOf',
+    type: 'function',
+    stateMutability: 'view',
+    inputs: [{ name: 'account', type: 'address' }],
+    outputs: [{ name: '', type: 'uint256' }]
+  }
+]
+
+// ABI minimal pour lire les données du staking
+const stakingAbi = [
+  {
+    name: 'totalStaked',
+    type: 'function',
+    stateMutability: 'view',
+    inputs: [],
+    outputs: [{ name: '', type: 'uint256' }]
+  },
+  {
+    name: 'getUniqueStakers',
+    type: 'function', 
+    stateMutability: 'view',
+    inputs: [],
+    outputs: [{ name: '', type: 'uint256' }]
+  },
+  {
+    name: 'totalRewardsDistributed',
+    type: 'function',
+    stateMutability: 'view',
+    inputs: [],
+    outputs: [{ name: '', type: 'uint256' }]
+  }
+]
+
+const Stake = () => {
   const [activeTab, setActiveTab] = useState('stake')
   const [amount, setAmount] = useState('')
   
   const isLive = isProtocolLive()
-  const isConnected = !!walletAddress
+  const hasStaking = CONTRACTS.STAKING && CONTRACTS.STAKING !== '' && CONTRACTS.STAKING !== null
+  
+  // Hook wagmi pour récupérer l'adresse du wallet connecté
+  const { address, isConnected } = useAccount()
 
-  const globalStats = [
-    { label: 'Total Staked', value: '—', icon: Wallet },
-    { label: 'Current APY', value: '—', icon: TrendingUp },
-    { label: 'Next Distribution', value: '—', icon: Clock },
-  ]
+  // Hook wagmi pour lire le balance du token
+  const { data: tokenBalance, isLoading: isBalanceLoading } = useReadContract({
+    address: CONTRACTS.TOKEN,
+    abi: erc20Abi,
+    functionName: 'balanceOf',
+    args: [address],
+    query: {
+      enabled: isConnected && isLive && CONTRACTS.TOKEN !== null,
+    }
+  })
+
+  // Lire les données du contrat de staking
+  const { data: totalStaked } = useReadContract({
+    address: CONTRACTS.STAKING,
+    abi: stakingAbi,
+    functionName: 'totalStaked',
+    query: {
+      enabled: isLive && hasStaking,
+    }
+  })
+
+  const { data: uniqueStakers } = useReadContract({
+    address: CONTRACTS.STAKING,
+    abi: stakingAbi,
+    functionName: 'getUniqueStakers',
+    query: {
+      enabled: isLive && hasStaking,
+    }
+  })
+
+  const { data: totalRewardsDistributed } = useReadContract({
+    address: CONTRACTS.STAKING,
+    abi: stakingAbi,
+    functionName: 'totalRewardsDistributed',
+    query: {
+      enabled: isLive && hasStaking,
+    }
+  })
+
+  // Formater le balance
+  const formatBalance = (balance) => {
+    if (!balance) return '0'
+    const formatted = Number(balance) / 1e18
+    if (formatted === 0) return '0'
+    if (formatted < 0.001) return '<0.001'
+    if (formatted < 1) return formatted.toFixed(4)
+    if (formatted < 1000) return formatted.toFixed(2)
+    return formatted.toLocaleString('en-US', { maximumFractionDigits: 2 })
+  }
+
+  const formattedBalance = formatBalance(tokenBalance)
+
+  // Affichage du balance selon l'état
+  const getBalanceDisplay = () => {
+    if (!isLive) return '—'
+    if (!isConnected) return 'Connect wallet'
+    if (isBalanceLoading) return '...'
+    return `${formattedBalance} ${CONTRACTS.SYMBOL || 'SEQR'}`
+  }
+
+  // Formater les valeurs
+  const formatTokenAmount = (amount) => {
+    if (!amount) return '0'
+    const formatted = Number(amount) / 1e18
+    if (formatted === 0) return '0'
+    if (formatted < 0.001) return '<0.001'
+    if (formatted < 1) return formatted.toFixed(4)
+    if (formatted < 1000) return formatted.toFixed(2)
+    return formatted.toLocaleString('en-US', { maximumFractionDigits: 2 })
+  }
+
+  // Stats globales dynamiques selon IS_LIVE
+  const globalStats = isLive
+    ? [
+        { 
+          label: 'Total Staked', 
+          value: hasStaking && totalStaked ? formatTokenAmount(totalStaked) : '0', 
+          icon: Wallet 
+        },
+        { label: 'Current APY', value: '0%', icon: TrendingUp },
+        { label: 'Next Distribution', value: '24h', icon: Clock },
+      ]
+    : [
+        { label: 'Total Staked', value: '—', icon: Wallet },
+        { label: 'Current APY', value: '—', icon: TrendingUp },
+        { label: 'Next Distribution', value: '—', icon: Clock },
+      ]
 
   const handleStake = (e) => {
     e.preventDefault()
-    if (!isConnected) {
-      connectWallet()
-      return
-    }
-    // TODO: Implement actual staking logic
+    if (!isConnected) return
+    // TODO: Implement actual staking logic with CONTRACTS.STAKING
     console.log('Staking', amount, CONTRACTS.SYMBOL)
   }
 
   const handleUnstake = (e) => {
     e.preventDefault()
-    if (!isConnected) {
-      connectWallet()
-      return
-    }
-    // TODO: Implement actual unstaking logic
+    if (!isConnected) return
+    // TODO: Implement actual unstaking logic with CONTRACTS.STAKING
     console.log('Unstaking', amount, CONTRACTS.SYMBOL)
   }
 
   const handleClaimRewards = () => {
-    if (!isConnected) {
-      connectWallet()
-      return
-    }
-    // TODO: Implement actual claim logic
+    if (!isConnected) return
+    // TODO: Implement actual claim logic with CONTRACTS.STAKING
     console.log('Claiming rewards')
   }
 
   const handleMaxClick = () => {
-    // TODO: Set amount to user's balance
-    setAmount('0')
+    if (tokenBalance) {
+      const maxAmount = Number(tokenBalance) / 1e18
+      setAmount(maxAmount.toString())
+    }
   }
 
   return (
@@ -105,7 +221,9 @@ const Stake = ({ walletAddress, connectWallet }) => {
                 <stat.icon className="text-[#0052FF]" size={24} />
               </div>
               <div>
-                <div className="text-2xl font-bold text-gray-300">{stat.value}</div>
+                <div className={`text-2xl font-bold ${stat.value === '—' ? 'text-gray-300' : 'text-gray-900'}`}>
+                  {stat.value}
+                </div>
                 <div className="text-gray-500 text-sm">{stat.label}</div>
               </div>
             </div>
@@ -124,39 +242,51 @@ const Stake = ({ walletAddress, connectWallet }) => {
               <h2 className="text-xl font-bold text-gray-900 mb-6">Your Position</h2>
               
               <div className="space-y-4">
+                {/* Your Balance - affiche le vrai balance */}
+                <div className="p-4 rounded-xl bg-green-50 border border-green-200">
+                  <div className="text-sm text-green-700 mb-1">Your Balance</div>
+                  <div className={`text-2xl font-bold ${!isLive || !isConnected ? 'text-gray-300' : 'text-green-700'}`}>
+                    {getBalanceDisplay()}
+                  </div>
+                </div>
+
                 <div className="p-4 rounded-xl bg-gray-50 border border-gray-100">
                   <div className="text-sm text-gray-500 mb-1">Staked Balance</div>
-                  <div className="text-2xl font-bold text-gray-300">
-                    — <span className="text-base font-normal text-gray-400">{CONTRACTS.SYMBOL || 'SEQR'}</span>
+                  <div className={`text-2xl font-bold ${isLive && isConnected ? 'text-gray-900' : 'text-gray-300'}`}>
+                    {isLive && isConnected ? '0' : '—'} <span className="text-base font-normal text-gray-400">{CONTRACTS.SYMBOL || 'SEQR'}</span>
                   </div>
                 </div>
 
                 <div className="p-4 rounded-xl bg-[#0052FF]/5 border border-[#0052FF]/20">
                   <div className="text-sm text-[#0052FF] mb-1">Pending Rewards</div>
-                  <div className="text-2xl font-bold text-gray-300">
-                    — <span className="text-base font-normal text-gray-400">ETH</span>
+                  <div className={`text-2xl font-bold ${isLive && isConnected ? 'text-gray-900' : 'text-gray-300'}`}>
+                    {isLive && isConnected ? '0' : '—'} <span className="text-base font-normal text-gray-400">ETH</span>
                   </div>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
                   <div className="p-4 rounded-xl bg-gray-50 border border-gray-100">
                     <div className="text-xs text-gray-500 mb-1">Pool Share</div>
-                    <div className="text-lg font-bold text-gray-300">—</div>
+                    <div className={`text-lg font-bold ${isLive && isConnected ? 'text-gray-900' : 'text-gray-300'}`}>
+                      {isLive && isConnected ? '0%' : '—'}
+                    </div>
                   </div>
                   <div className="p-4 rounded-xl bg-gray-50 border border-gray-100">
                     <div className="text-xs text-gray-500 mb-1">Staking Time</div>
-                    <div className="text-lg font-bold text-gray-300">—</div>
+                    <div className={`text-lg font-bold ${isLive && isConnected ? 'text-gray-900' : 'text-gray-300'}`}>
+                      {isLive && isConnected ? '0d' : '—'}
+                    </div>
                   </div>
                 </div>
 
                 <button 
                   onClick={handleClaimRewards}
                   className={`w-full py-3 rounded-xl font-semibold transition-colors ${
-                    isLive 
+                    isLive && isConnected
                       ? 'bg-[#0052FF] text-white hover:bg-[#0041CC]' 
                       : 'bg-gray-200 text-gray-500 cursor-not-allowed'
                   }`}
-                  disabled={!isLive}
+                  disabled={!isLive || !isConnected}
                 >
                   {isConnected ? 'Claim Rewards' : 'Connect to Claim'}
                 </button>
@@ -204,7 +334,9 @@ const Stake = ({ walletAddress, connectWallet }) => {
                   <div className="flex items-center justify-between mb-2">
                     <label className="text-sm font-medium text-gray-700">Amount</label>
                     <span className="text-sm text-gray-500">
-                      Balance: <span className="font-medium text-gray-700">— {CONTRACTS.SYMBOL || 'SEQR'}</span>
+                      Balance: <span className={`font-medium ${!isLive || !isConnected ? 'text-gray-400' : 'text-gray-700'}`}>
+                        {getBalanceDisplay()}
+                      </span>
                     </span>
                   </div>
                   <div className="relative">
@@ -213,17 +345,17 @@ const Stake = ({ walletAddress, connectWallet }) => {
                       value={amount}
                       onChange={(e) => setAmount(e.target.value)}
                       placeholder="0.00"
-                      disabled={!isLive}
+                      disabled={!isLive || !isConnected}
                       className={`w-full px-4 py-4 pr-24 rounded-xl border border-gray-200 text-2xl font-semibold text-gray-900 placeholder-gray-300 focus:outline-none focus:border-[#0052FF] focus:ring-2 focus:ring-[#0052FF]/20 transition-all ${
-                        !isLive ? 'bg-gray-50 cursor-not-allowed' : ''
+                        !isLive || !isConnected ? 'bg-gray-50 cursor-not-allowed' : ''
                       }`}
                     />
                     <button
                       type="button"
                       onClick={handleMaxClick}
-                      disabled={!isLive}
+                      disabled={!isLive || !isConnected}
                       className={`absolute right-3 top-1/2 -translate-y-1/2 px-3 py-1.5 rounded-lg text-sm font-semibold transition-colors ${
-                        isLive 
+                        isLive && isConnected
                           ? 'bg-[#0052FF]/10 text-[#0052FF] hover:bg-[#0052FF]/20' 
                           : 'bg-gray-100 text-gray-400 cursor-not-allowed'
                       }`}
@@ -257,35 +389,45 @@ const Stake = ({ walletAddress, connectWallet }) => {
                 <div className="space-y-3 mb-6">
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-gray-500">Estimated APY</span>
-                    <span className="font-semibold text-gray-300">—</span>
+                    <span className={`font-semibold ${isLive ? 'text-gray-900' : 'text-gray-300'}`}>
+                      {isLive ? '0%' : '—'}
+                    </span>
                   </div>
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-gray-500">Daily Earnings</span>
-                    <span className="font-semibold text-gray-300">—</span>
+                    <span className={`font-semibold ${isLive ? 'text-gray-900' : 'text-gray-300'}`}>
+                      {isLive ? '0 ETH' : '—'}
+                    </span>
                   </div>
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-gray-500">Monthly Earnings</span>
-                    <span className="font-semibold text-gray-300">—</span>
+                    <span className={`font-semibold ${isLive ? 'text-gray-900' : 'text-gray-300'}`}>
+                      {isLive ? '0 ETH' : '—'}
+                    </span>
                   </div>
                 </div>
 
                 {/* Submit Button */}
-                <button
-                  type="submit"
-                  disabled={!isLive}
-                  className={`w-full py-4 rounded-xl font-semibold text-lg transition-colors ${
-                    isLive 
-                      ? 'bg-[#0052FF] text-white hover:bg-[#0041CC]' 
-                      : 'bg-gray-200 text-gray-500 cursor-not-allowed'
-                  }`}
-                >
-                  {!isConnected 
-                    ? 'Connect Wallet' 
-                    : activeTab === 'stake' 
+                {!isConnected ? (
+                  <div className="flex justify-center">
+                    <ConnectButton />
+                  </div>
+                ) : (
+                  <button
+                    type="submit"
+                    disabled={!isLive}
+                    className={`w-full py-4 rounded-xl font-semibold text-lg transition-colors ${
+                      isLive 
+                        ? 'bg-[#0052FF] text-white hover:bg-[#0041CC]' 
+                        : 'bg-gray-200 text-gray-500 cursor-not-allowed'
+                    }`}
+                  >
+                    {activeTab === 'stake' 
                       ? `Stake ${CONTRACTS.SYMBOL || 'SEQR'}` 
                       : `Unstake ${CONTRACTS.SYMBOL || 'SEQR'}`
-                  }
-                </button>
+                    }
+                  </button>
+                )}
               </form>
             </div>
 

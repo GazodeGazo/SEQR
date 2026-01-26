@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { AlertTriangle, Sparkles, Check, ExternalLink } from 'lucide-react'
+import { useReadContract } from 'wagmi'
 import { CONTRACTS, isProtocolLive } from '../config/contracts'
 
 // Composant placeholder pour les stats pré-launch
@@ -10,8 +11,62 @@ const StatPlaceholder = ({ label, value }) => (
   </div>
 )
 
+// ABI minimal pour lire les données du staking
+const stakingAbi = [
+  {
+    name: 'totalStaked',
+    type: 'function',
+    stateMutability: 'view',
+    inputs: [],
+    outputs: [{ name: '', type: 'uint256' }]
+  },
+  {
+    name: 'getUniqueStakers',
+    type: 'function', 
+    stateMutability: 'view',
+    inputs: [],
+    outputs: [{ name: '', type: 'uint256' }]
+  },
+  {
+    name: 'totalRewardsDistributed',
+    type: 'function',
+    stateMutability: 'view',
+    inputs: [],
+    outputs: [{ name: '', type: 'uint256' }]
+  }
+]
+
 const Home = () => {
   const isLive = isProtocolLive()
+  const hasStaking = CONTRACTS.STAKING && CONTRACTS.STAKING !== '' && CONTRACTS.STAKING !== null
+  
+  // Lire les données du contrat de staking
+  const { data: totalStaked } = useReadContract({
+    address: CONTRACTS.STAKING,
+    abi: stakingAbi,
+    functionName: 'totalStaked',
+    query: {
+      enabled: isLive && hasStaking,
+    }
+  })
+
+  const { data: uniqueStakers } = useReadContract({
+    address: CONTRACTS.STAKING,
+    abi: stakingAbi,
+    functionName: 'getUniqueStakers',
+    query: {
+      enabled: isLive && hasStaking,
+    }
+  })
+
+  const { data: totalRewardsDistributed } = useReadContract({
+    address: CONTRACTS.STAKING,
+    abi: stakingAbi,
+    functionName: 'totalRewardsDistributed',
+    query: {
+      enabled: isLive && hasStaking,
+    }
+  })
   
   const scrollToHowItWorks = () => {
     const element = document.getElementById('how-it-works')
@@ -20,13 +75,46 @@ const Home = () => {
     }
   }
 
-  // Stats - affiche "—" si pas live
-  const stats = [
-    { label: 'Total Value Locked', value: '—' },
-    { label: `${CONTRACTS.SYMBOL || 'SEQR'} Staked`, value: '—' },
-    { label: 'Unique Stakers', value: '—' },
-    { label: 'ETH Distributed', value: '—' },
-  ]
+  // Formater les valeurs
+  const formatTokenAmount = (amount) => {
+    if (!amount) return '0'
+    const formatted = Number(amount) / 1e18
+    if (formatted === 0) return '0'
+    if (formatted < 0.001) return '<0.001'
+    if (formatted < 1) return formatted.toFixed(4)
+    if (formatted < 1000) return formatted.toFixed(2)
+    return formatted.toLocaleString('en-US', { maximumFractionDigits: 2 })
+  }
+
+  const formatETH = (amount) => {
+    if (!amount) return '0'
+    const formatted = Number(amount) / 1e18
+    if (formatted === 0) return '0'
+    if (formatted < 0.001) return '<0.001'
+    if (formatted < 1) return formatted.toFixed(4)
+    return formatted.toFixed(4)
+  }
+
+  // Calculer le TVL (pour l'instant sans prix, on affiche juste le montant en tokens)
+  // TODO: Intégrer un prix du token pour calculer en $
+  const tvlAmount = totalStaked ? formatTokenAmount(totalStaked) : '0'
+  const tvlDisplay = hasStaking && totalStaked ? `$${tvlAmount}` : (isLive ? '$0' : '—')
+
+  // Stats dynamiques selon IS_LIVE
+  const stats = isLive
+    ? [
+        { label: 'Total Value Locked', value: hasStaking && totalStaked ? tvlDisplay : '$0' },
+        { label: `${CONTRACTS.SYMBOL || 'SEQR'} Staked`, value: hasStaking && totalStaked ? `${formatTokenAmount(totalStaked)} ${CONTRACTS.SYMBOL || 'SEQR'}` : `0 ${CONTRACTS.SYMBOL || 'SEQR'}` },
+        { label: 'Unique Stakers', value: hasStaking && uniqueStakers ? String(uniqueStakers) : '0' },
+        { label: 'ETH Distributed', value: hasStaking && totalRewardsDistributed ? `${formatETH(totalRewardsDistributed)} ETH` : '0 ETH' },
+      ]
+    : [
+        // Mode prelaunch - affiche "—" pour toutes les stats
+        { label: 'Total Value Locked', value: '—' },
+        { label: `${CONTRACTS.SYMBOL || 'SEQR'} Staked`, value: '—' },
+        { label: 'Unique Stakers', value: '—' },
+        { label: 'ETH Distributed', value: '—' },
+      ]
 
   return (
     <div className="bg-transparent">

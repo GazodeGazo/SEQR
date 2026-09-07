@@ -125,19 +125,19 @@ const Home = () => {
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full mb-8 border border-gray-200">
             <span className={`w-2 h-2 rounded-full animate-pulse ${isLive ? 'bg-green-500' : 'bg-[#00C805]'}`} />
             <span className="text-sm font-medium text-gray-700">
-              {isLive ? `${CONTRACTS.SYMBOL} Live on ${CONTRACTS.CHAIN_NAME}` : 'Launching Soon on Base'}
+              {isLive ? `${CONTRACTS.SYMBOL} Live on ${CONTRACTS.CHAIN_NAME}` : 'Launching Soon on Robinhood'}
             </span>
           </div>
 
           {/* Title */}
           <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6">
             Own a piece of the{' '}
-            <span className="text-[#008A04]">Base sequencer</span>
+            <span className="text-[#008A04]">Robinhood sequencer</span>
           </h1>
 
           {/* Subtitle */}
           <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">
-            {CONTRACTS.SYMBOL || 'SEQR'} enables fractional ownership of Base L2 sequencer infrastructure. 
+            {CONTRACTS.SYMBOL || 'SEQR'} enables fractional ownership of Robinhood sequencer infrastructure. 
             Stake ${CONTRACTS.SYMBOL || 'SEQR'}, earn rewards from transaction fees.
           </p>
 
@@ -188,7 +188,7 @@ const Home = () => {
                 className="text-sm text-gray-500 hover:text-[#008A04] transition-colors inline-flex items-center gap-1"
               >
                 <ExternalLink size={14} />
-                View on Basescan
+                View on Explorer
               </a>
               <span className="text-gray-300">|</span>
               <a 
@@ -226,7 +226,7 @@ const Home = () => {
             {[
               { step: '01', title: `Buy $${CONTRACTS.SYMBOL || 'SEQR'}`, desc: 'Purchase tokens on Uniswap. 3% tax funds the ecosystem.' },
               { step: '02', title: 'Stake', desc: `Stake your $${CONTRACTS.SYMBOL || 'SEQR'} to earn ETH rewards.` },
-              { step: '03', title: 'Treasury Grows', desc: '1% of each trade accumulates for $BASE.' },
+              { step: '03', title: 'Treasury Grows', desc: '1% of each trade accumulates for $HOOD.' },
               { step: '04', title: 'Earn Revenue', desc: `${CONTRACTS.SYMBOL || 'SEQR'} operates sequencer, rewards flow to stakers.` },
             ].map((item) => (
               <div key={item.step} className="p-6 rounded-2xl bg-white border border-gray-200 hover:border-[#00C805]/30 hover:shadow-md transition-all">
@@ -247,7 +247,7 @@ const Home = () => {
           <div className="bg-white rounded-2xl p-8 md:p-12 text-center border border-gray-200">
             <h3 className="text-2xl font-bold text-gray-900 mb-3">Sequencer Goal</h3>
             <p className="text-gray-500 mb-6 max-w-md mx-auto">
-              Track our progress towards accumulating enough $BASE to operate a Base sequencer node
+              Track our progress towards accumulating enough $HOOD to operate a Robinhood sequencer node
             </p>
             <div className="flex justify-between text-sm mb-2 max-w-md mx-auto">
               <span className="text-gray-500">Progress</span>

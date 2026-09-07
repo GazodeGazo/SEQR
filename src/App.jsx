@@ -63,7 +63,7 @@ function App() {
           <div className="flex items-center gap-3">
             <img src="/logo.svg" alt="SEQR" className="w-8 h-8" />
             {isLive ? (
-              <span className="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full font-medium">Live on Base</span>
+              <span className="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full font-medium">Live on Robinhood</span>
             ) : (
               <span className="bg-[#00C805]/10 text-[#008A04] text-xs px-2 py-1 rounded-full font-medium">Coming Soon</span>
             )}
@@ -73,7 +73,7 @@ function App() {
             {isLive && (
               <a href={CONTRACTS.DEXSCREENER} target="_blank" rel="noopener noreferrer" className="text-sm text-gray-500 hover:text-[#008A04] transition-colors">DexScreener</a>
             )}
-            <a href={CONTRACTS.BASESCAN_TOKEN} target="_blank" rel="noopener noreferrer" className="text-sm text-gray-500 hover:text-[#008A04] transition-colors">Basescan</a>
+            <a href={CONTRACTS.BASESCAN_TOKEN} target="_blank" rel="noopener noreferrer" className="text-sm text-gray-500 hover:text-[#008A04] transition-colors">Explorer</a>
             <Link to="/docs" className="text-sm text-gray-500 hover:text-[#008A04] transition-colors">Docs</Link>
           </div>
           <div className="text-gray-400 text-sm">© 2026 SEQR Protocol</div>

@@ -38,7 +38,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               className="text-sm text-gray-500 hover:text-[#008A04] transition-colors flex items-center gap-1"
             >
-              Basescan <ExternalLink size={12} />
+              Explorer <ExternalLink size={12} />
             </a>
           </div>
 

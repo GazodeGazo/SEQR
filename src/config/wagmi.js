@@ -9,7 +9,7 @@ export const config = getDefaultConfig({
   ssr: false,
 })
 
-// Configuration de la chain Base
+// Configuration de la chain Robinhood
 export const baseChain = {
   id: CONTRACTS.CHAIN_ID,
   name: CONTRACTS.CHAIN_NAME,
@@ -18,6 +18,6 @@ export const baseChain = {
     default: { http: [CONTRACTS.RPC_URL] },
   },
   blockExplorers: {
-    default: { name: 'Basescan', url: CONTRACTS.BLOCK_EXPLORER },
+    default: { name: 'Explorer', url: CONTRACTS.BLOCK_EXPLORER },
   },
 }

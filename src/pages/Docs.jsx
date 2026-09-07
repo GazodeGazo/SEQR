@@ -93,7 +93,7 @@ export default function Docs() {
                   </a>
                   <a href="https://basescan.org" target="_blank" rel="noopener noreferrer"
                      className="flex items-center gap-2 text-sm text-gray-500 hover:text-[#008A04]">
-                    <ExternalLink size={14} /> Basescan
+                    <ExternalLink size={14} /> Explorer
                   </a>
                 </div>
               </div>
@@ -123,7 +123,7 @@ export default function Docs() {
               </div>
               <div className="prose prose-gray max-w-none">
                 <p className="text-gray-600 leading-relaxed">
-                  <strong>SEQR (Sequencer Equity Quota Rewards)</strong> is a decentralized protocol enabling fractional ownership of Base L2 sequencer infrastructure. Through community-driven resource pooling and transparent governance, SEQR democratizes access to sequencer operation rewards.
+                  <strong>SEQR (Sequencer Equity Quota Rewards)</strong> is a decentralized protocol enabling fractional ownership of Robinhood sequencer infrastructure. Through community-driven resource pooling and transparent governance, SEQR democratizes access to sequencer operation rewards.
                 </p>
                 <p className="text-gray-600 leading-relaxed mt-4">
                   The protocol addresses a fundamental challenge in Layer 2 economics: while sequencers generate substantial revenue from transaction ordering and fees, participation has historically been limited to well-capitalized entities. SEQR changes this paradigm by allowing any token holder to stake and earn proportional rewards.
@@ -131,7 +131,7 @@ export default function Docs() {
                 <div className="bg-[#00C805]/5 border border-[#00C805]/10 rounded-xl p-6 mt-6">
                   <h4 className="font-semibold text-gray-900 mb-2">Key Innovation</h4>
                   <p className="text-gray-600 text-sm">
-                    SEQR transforms sequencer operation from a capital-intensive endeavor accessible only to large entities into a community-driven opportunity where everyone can participate and benefit from Base's growth.
+                    SEQR transforms sequencer operation from a capital-intensive endeavor accessible only to large entities into a community-driven opportunity where everyone can participate and benefit from Robinhood's growth.
                   </p>
                 </div>
               </div>
@@ -148,13 +148,13 @@ export default function Docs() {
               <div className="prose prose-gray max-w-none">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Sequencer Centralization</h3>
                 <p className="text-gray-600 leading-relaxed">
-                  Base L2, like most optimistic rollups, currently operates with a centralized sequencer controlled by Coinbase. This architecture, while efficient, creates several challenges:
+                  Robinhood, like most L2 networks, currently operates with a centralized sequencer. This architecture, while efficient, creates several challenges:
                 </p>
                 
                 <div className="grid md:grid-cols-2 gap-4 mt-6 not-prose">
                   {[
                     { title: 'Revenue Concentration', desc: 'All transaction fees and MEV flow to a single entity. Users who generate network activity receive no direct economic benefit.' },
-                    { title: 'Barrier to Entry', desc: 'Future sequencer operation will require staking significant amounts of $BASE tokens. Individual participants lack the capital.' },
+                    { title: 'Barrier to Entry', desc: 'Future sequencer operation will require staking significant amounts of $HOOD tokens. Individual participants lack the capital.' },
                     { title: 'Limited Transparency', desc: 'Revenue distribution and operational decisions remain opaque to the community that drives network adoption.' },
                     { title: 'Centralization Risk', desc: 'Single point of control for transaction ordering and network operations.' },
                   ].map((item, i) => (
@@ -167,9 +167,9 @@ export default function Docs() {
 
                 <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 mt-8">
                   <p className="text-gray-600 text-sm italic">
-                    "The sequencer is only a fast lane to get into Base. At any point, a user can also transact on Base through Ethereum directly. This brings the full decentralization and censorship resistance of the Ethereum validator set to transaction inclusion on Base."
+                    "The sequencer is only a fast lane to get into Robinhood. At any point, a user can also transact on Robinhood through Ethereum directly. This brings the full decentralization and censorship resistance of the Ethereum validator set to transaction inclusion on Robinhood."
                   </p>
-                  <p className="text-gray-500 text-sm mt-2">— Jesse Pollak, Base Creator</p>
+                  <p className="text-gray-500 text-sm mt-2">— Robinhood Team</p>
                 </div>
               </div>
             </section>
@@ -189,9 +189,9 @@ export default function Docs() {
 
                 <div className="space-y-4 mt-6 not-prose">
                   {[
-                    { num: '1', title: 'Community Treasury', desc: '1% of all $SEQR transactions accumulate in a transparent, on-chain treasury. These funds are designated for $BASE acquisition when sequencer staking becomes available.' },
+                    { num: '1', title: 'Community Treasury', desc: '1% of all $SEQR transactions accumulate in a transparent, on-chain treasury. These funds are designated for $HOOD acquisition when sequencer staking becomes available.' },
                     { num: '2', title: 'Staking Rewards', desc: '2% of all transactions are distributed to $SEQR stakers as ETH rewards. Rewards are proportional to stake size and distributed continuously.' },
-                    { num: '3', title: 'Collective Operation', desc: 'Once sufficient $BASE is accumulated, the treasury will stake tokens to operate a sequencer node. All generated revenue flows back to $SEQR stakers.' },
+                    { num: '3', title: 'Collective Operation', desc: 'Once sufficient $HOOD is accumulated, the treasury will stake tokens to operate a sequencer node. All generated revenue flows back to $SEQR stakers.' },
                   ].map((item) => (
                     <div key={item.num} className="flex gap-4 p-4 bg-green-50 border border-green-100 rounded-xl">
                       <div className="w-8 h-8 bg-[#00C805] rounded-lg flex items-center justify-center shrink-0">
@@ -217,7 +217,7 @@ export default function Docs() {
               </div>
               <div className="space-y-4">
                 {[
-                  { step: '1', title: 'Acquire $SEQR', desc: 'Purchase tokens on Uniswap (Base). A 3% transaction tax funds the ecosystem.' },
+                  { step: '1', title: 'Acquire $SEQR', desc: 'Purchase tokens on Uniswap (Robinhood). A 3% transaction tax funds the ecosystem.' },
                   { step: '2', title: 'Stake Tokens', desc: 'Deposit $SEQR into the staking contract. No minimum stake required.' },
                   { step: '3', title: 'Earn ETH Rewards', desc: 'Receive proportional ETH rewards from the 2% staking allocation. Claim after 7-day cooldown.' },
                   { step: '4', title: 'Treasury Growth', desc: '1% of transactions accumulate in treasury, building toward sequencer participation.' },
@@ -252,7 +252,7 @@ export default function Docs() {
                     {[
                       ['Token Name', 'SEQR Protocol'],
                       ['Symbol', '$SEQR'],
-                      ['Network', 'Base (Chain ID: 8453)'],
+                      ['Network', 'Robinhood'],
                       ['Total Supply', '1,000,000,000'],
                       ['Decimals', '18'],
                     ].map(([label, value]) => (
@@ -359,7 +359,7 @@ export default function Docs() {
               </div>
               
               <p className="text-gray-600 mb-6">
-                The treasury is the core mechanism for accumulating funds to acquire $BASE tokens for sequencer staking.
+                The treasury is the core mechanism for accumulating funds to acquire $HOOD tokens for sequencer staking.
               </p>
 
               <div className="bg-emerald-50 border border-emerald-100 rounded-xl p-6">
@@ -367,8 +367,8 @@ export default function Docs() {
                 <ol className="space-y-2 text-sm text-emerald-800">
                   <li className="flex items-start gap-2"><span className="font-medium">1.</span> Collect 1% of all $SEQR transactions</li>
                   <li className="flex items-start gap-2"><span className="font-medium">2.</span> Hold as ETH/stablecoins for stability</li>
-                  <li className="flex items-start gap-2"><span className="font-medium">3.</span> Convert to $BASE when token launches</li>
-                  <li className="flex items-start gap-2"><span className="font-medium">4.</span> Stake $BASE for sequencer operation rights</li>
+                  <li className="flex items-start gap-2"><span className="font-medium">3.</span> Convert to $HOOD when token launches</li>
+                  <li className="flex items-start gap-2"><span className="font-medium">4.</span> Stake $HOOD for sequencer operation rights</li>
                   <li className="flex items-start gap-2"><span className="font-medium">5.</span> Distribute sequencer revenue to $SEQR stakers</li>
                 </ol>
               </div>
@@ -376,7 +376,7 @@ export default function Docs() {
               <div className="mt-6 p-4 bg-gray-50 border border-gray-200 rounded-xl">
                 <h4 className="font-semibold text-gray-900 mb-2">Transparency</h4>
                 <p className="text-gray-600 text-sm">
-                  All treasury holdings are publicly viewable on-chain. Treasury address is published and trackable on Basescan.
+                  All treasury holdings are publicly viewable on-chain. Treasury address is published and trackable on Explorer.
                 </p>
               </div>
             </section>
@@ -392,8 +392,8 @@ export default function Docs() {
               
               <div className="space-y-4">
                 {[
-                  { phase: 1, title: 'Launch & Accumulation', status: 'Current', items: ['Token deployment on Base', 'Staking contract activation', 'Treasury accumulation begins', 'Community building'] },
-                  { phase: 2, title: '$BASE Acquisition', status: 'Upcoming', items: ['Monitor $BASE token launch', 'Execute strategic purchases', 'Optimize treasury allocation', 'Expand partnerships'] },
+                  { phase: 1, title: 'Launch & Accumulation', status: 'Current', items: ['Token deployment on Robinhood', 'Staking contract activation', 'Treasury accumulation begins', 'Community building'] },
+                  { phase: 2, title: '$HOOD Acquisition', status: 'Upcoming', items: ['Monitor $HOOD token launch', 'Execute strategic purchases', 'Optimize treasury allocation', 'Expand partnerships'] },
                   { phase: 3, title: 'Sequencer Activation', status: 'Future', items: ['Meet staking threshold', 'Deploy sequencer node', 'Begin operations', 'Initiate revenue distribution'] },
                   { phase: 4, title: 'Scaling & Governance', status: 'Vision', items: ['Multiple sequencer nodes', 'Cross-chain expansion', 'Community governance', 'Protocol optimization'] },
                 ].map((phase) => (
@@ -445,7 +445,7 @@ export default function Docs() {
                 <div className="bg-green-50 border border-green-100 rounded-xl p-6">
                   <h3 className="font-semibold text-green-900 mb-4">Verification</h3>
                   <ul className="space-y-2 text-sm text-green-800">
-                    {['Source code verified on Basescan', 'Open source and auditable', 'Standard ERC-20 implementation', 'Publicly accessible contracts'].map((item, i) => (
+                    {['Source code verified on-chain', 'Open source and auditable', 'Standard ERC-20 implementation', 'Publicly accessible contracts'].map((item, i) => (
                       <li key={i} className="flex items-center gap-2">
                         <Check size={14} className="text-green-600" />
                         {item}
@@ -473,7 +473,7 @@ export default function Docs() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-yellow-900">Protocol Risks</h4>
-                    <p className="mt-1">Smart contract risk exists despite security measures. The protocol depends on Base network development. $BASE token launch timing is uncertain.</p>
+                    <p className="mt-1">Smart contract risk exists despite security measures. The protocol depends on Robinhood network development. $HOOD token launch timing is uncertain.</p>
                   </div>
                   <div>
                     <h4 className="font-semibold text-yellow-900">Regulatory Risks</h4>
@@ -499,13 +499,13 @@ export default function Docs() {
               
               <div className="space-y-4">
                 {[
-                  { q: 'What is SEQR?', a: 'SEQR (Sequencer Equity Quota Rewards) is a protocol that enables fractional ownership of Base L2 sequencer infrastructure through community pooling.' },
+                  { q: 'What is SEQR?', a: 'SEQR (Sequencer Equity Quota Rewards) is a protocol that enables fractional ownership of Robinhood sequencer infrastructure through community pooling.' },
                   { q: 'How do I earn rewards?', a: 'Buy $SEQR on Uniswap, stake your tokens in the staking contract, and earn ETH rewards proportional to your stake from the 2% trading tax.' },
-                  { q: 'When will SEQR operate a sequencer?', a: 'This depends on Base\'s sequencer decentralization timeline and $BASE token availability. The treasury is actively accumulating funds.' },
+                  { q: 'When will SEQR operate a sequencer?', a: 'This depends on Robinhood\'s sequencer decentralization timeline and $HOOD token availability. The treasury is actively accumulating funds.' },
                   { q: 'Is there a minimum stake?', a: 'No. You can stake any amount of $SEQR.' },
                   { q: 'How often can I claim rewards?', a: 'You can claim rewards every 7 days after your last stake or claim action.' },
                   { q: 'Can I unstake anytime?', a: 'Yes. Your principal is never locked. Only reward claims have a cooldown.' },
-                  { q: 'What happens to the 3% tax?', a: '2% goes to staking rewards (ETH) and 1% goes to the treasury for $BASE acquisition.' },
+                  { q: 'What happens to the 3% tax?', a: '2% goes to staking rewards (ETH) and 1% goes to the treasury for $HOOD acquisition.' },
                   { q: 'Is the contract safe?', a: 'The contract has ownership renounced, LP burned, and no mint function. However, all DeFi carries inherent smart contract risk.' },
                 ].map((faq, i) => (
                   <div key={i} className="bg-gray-50 border border-gray-100 rounded-xl p-5">

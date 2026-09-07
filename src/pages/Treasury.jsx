@@ -80,8 +80,8 @@ const Treasury = () => {
                   <p className="text-sm text-gray-500">See how rewards are distributed to stakers in real-time</p>
                 </div>
                 <div className="bg-gray-50 rounded-xl p-4 text-left">
-                  <h4 className="font-semibold text-gray-900 mb-2">$BASE Progress</h4>
-                  <p className="text-sm text-gray-500">Monitor progress towards acquiring $BASE for sequencer staking</p>
+                  <h4 className="font-semibold text-gray-900 mb-2">$HOOD Progress</h4>
+                  <p className="text-sm text-gray-500">Monitor progress towards acquiring $HOOD for sequencer staking</p>
                 </div>
                 <div className="bg-gray-50 rounded-xl p-4 text-left">
                   <h4 className="font-semibold text-gray-900 mb-2">Transaction History</h4>
@@ -173,7 +173,7 @@ const Treasury = () => {
                   rel="noopener noreferrer"
                   className="flex items-center justify-between p-3 rounded-xl hover:bg-gray-50 transition-colors group"
                 >
-                  <span className="text-gray-700 group-hover:text-[#008A04] font-medium">Basescan</span>
+                  <span className="text-gray-700 group-hover:text-[#008A04] font-medium">Explorer</span>
                   <ExternalLink className="text-gray-400 group-hover:text-[#008A04]" size={16} />
                 </a>
               </div>

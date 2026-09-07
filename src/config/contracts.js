@@ -11,7 +11,7 @@ export const CONTRACTS = {
   DECIMALS: 18,
   TOTAL_SUPPLY: "1000000000",
   CHAIN_ID: 8453,
-  CHAIN_NAME: "Base",
+  CHAIN_NAME: "Robinhood",
   RPC_URL: "https://mainnet.base.org",
   BLOCK_EXPLORER: "https://basescan.org",
   TWITTER: "https://x.com/seqrh",

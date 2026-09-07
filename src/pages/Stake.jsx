@@ -183,13 +183,13 @@ const Stake = () => {
             {isLive && (
               <div className="flex gap-3">
                 <a 
-                  href={CONTRACTS.DEXSCREENER} 
+                  href={CONTRACTS.PONS} 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-4 py-2 bg-[#00C805]/10 text-[#008A04] rounded-lg text-sm font-medium hover:bg-[#00C805]/20 transition-colors"
                 >
                   <ExternalLink size={16} />
-                  DexScreener
+                  Pons
                 </a>
                 <a 
                   href={CONTRACTS.BASESCAN_TOKEN} 

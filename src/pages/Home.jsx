@@ -151,13 +151,13 @@ const Home = () => {
                   </button>
                 </Link>
                 <a 
-                  href={CONTRACTS.DEXSCREENER}
+                  href={CONTRACTS.PONS}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="min-w-[180px] px-8 py-4 bg-white/90 backdrop-blur-sm text-gray-900 font-semibold rounded-xl border border-gray-200 hover:border-gray-300 text-lg shadow-sm transition-colors inline-flex items-center justify-center gap-2"
                 >
                   <ExternalLink size={20} />
-                  DexScreener
+                  Pons
                 </a>
               </>
             ) : (
@@ -373,12 +373,12 @@ const Home = () => {
                     </button>
                   </Link>
                   <a 
-                    href={CONTRACTS.DEXSCREENER}
+                    href={CONTRACTS.PONS}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="px-8 py-4 bg-white/10 text-white font-semibold rounded-xl border border-white/20 hover:bg-white/20 transition-colors inline-flex items-center gap-2"
                   >
-                    View Chart
+                    View on Pons
                   </a>
                 </>
               ) : (

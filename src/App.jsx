@@ -71,7 +71,7 @@ function App() {
           <div className="flex items-center gap-6">
             <a href={CONTRACTS.TWITTER} target="_blank" rel="noopener noreferrer" className="text-sm text-gray-500 hover:text-[#008A04] transition-colors">Twitter</a>
             {isLive && (
-              <a href={CONTRACTS.DEXSCREENER} target="_blank" rel="noopener noreferrer" className="text-sm text-gray-500 hover:text-[#008A04] transition-colors">DexScreener</a>
+              <a href={CONTRACTS.PONS} target="_blank" rel="noopener noreferrer" className="text-sm text-gray-500 hover:text-[#008A04] transition-colors">Pons</a>
             )}
             <a href={CONTRACTS.BASESCAN_TOKEN} target="_blank" rel="noopener noreferrer" className="text-sm text-gray-500 hover:text-[#008A04] transition-colors">Explorer</a>
             <Link to="/docs" className="text-sm text-gray-500 hover:text-[#008A04] transition-colors">Docs</Link>

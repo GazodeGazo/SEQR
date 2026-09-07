@@ -15,7 +15,7 @@ export const CONTRACTS = {
   RPC_URL: "https://mainnet.base.org",
   BLOCK_EXPLORER: "https://basescan.org",
   TWITTER: "https://x.com/seqrh",
-  DEXSCREENER: "https://dexscreener.com/base/0xB2157aF8AC961926dc11558A4C7991924c86F248",
+  PONS: "https://www.ponsfamily.com/",
   BASESCAN_TOKEN: "https://basescan.org/token/0xB2157aF8AC961926dc11558A4C7991924c86F248",
 };
 export const isProtocolLive = () => CONTRACTS.IS_LIVE && CONTRACTS.TOKEN !== null;

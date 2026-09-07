@@ -17,7 +17,7 @@ export default function Footer() {
           {/* Links */}
           <div className="flex items-center gap-6">
             <a 
-              href="https://x.com/SEQR_Protocol" 
+              href="https://x.com/SeqrOnRH" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-sm text-gray-500 hover:text-[#008A04] transition-colors flex items-center gap-1"

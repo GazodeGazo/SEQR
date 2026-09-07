@@ -14,7 +14,7 @@ export const CONTRACTS = {
   CHAIN_NAME: "Robinhood",
   RPC_URL: "https://mainnet.base.org",
   BLOCK_EXPLORER: "https://basescan.org",
-  TWITTER: "https://x.com/seqrh",
+  TWITTER: "https://x.com/SeqrOnRH",
   PONS: "https://www.ponsfamily.com/",
   BASESCAN_TOKEN: "https://basescan.org/token/0xB2157aF8AC961926dc11558A4C7991924c86F248",
 };

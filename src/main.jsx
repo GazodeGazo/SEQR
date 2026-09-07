@@ -18,8 +18,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <RainbowKitProvider
           locale="en"
           theme={darkTheme({
-            accentColor: '#0052FF',
-            accentColorForeground: 'white',
+            accentColor: '#00C805',
+            accentColorForeground: 'black',
             borderRadius: 'medium',
           })}
         >

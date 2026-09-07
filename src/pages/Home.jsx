@@ -6,7 +6,7 @@ import { CONTRACTS, isProtocolLive } from '../config/contracts'
 // Composant placeholder pour les stats pré-launch
 const StatPlaceholder = ({ label, value }) => (
   <div className="text-center p-6 bg-white rounded-xl border border-gray-100">
-    <div className={`text-3xl font-bold mb-2 ${value === '—' ? 'text-gray-300' : 'text-[#0052FF]'}`}>{value}</div>
+    <div className={`text-3xl font-bold mb-2 ${value === '—' ? 'text-gray-300' : 'text-[#008A04]'}`}>{value}</div>
     <div className="text-gray-500 text-sm">{label}</div>
   </div>
 )
@@ -123,7 +123,7 @@ const Home = () => {
         <div className="text-center max-w-4xl mx-auto">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full mb-8 border border-gray-200">
-            <span className={`w-2 h-2 rounded-full animate-pulse ${isLive ? 'bg-green-500' : 'bg-[#0052FF]'}`} />
+            <span className={`w-2 h-2 rounded-full animate-pulse ${isLive ? 'bg-green-500' : 'bg-[#00C805]'}`} />
             <span className="text-sm font-medium text-gray-700">
               {isLive ? `${CONTRACTS.SYMBOL} Live on ${CONTRACTS.CHAIN_NAME}` : 'Launching Soon on Base'}
             </span>
@@ -132,7 +132,7 @@ const Home = () => {
           {/* Title */}
           <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6">
             Own a piece of the{' '}
-            <span className="text-[#0052FF]">Base sequencer</span>
+            <span className="text-[#008A04]">Base sequencer</span>
           </h1>
 
           {/* Subtitle */}
@@ -146,7 +146,7 @@ const Home = () => {
             {isLive ? (
               <>
                 <Link to="/stake">
-                  <button className="min-w-[180px] px-8 py-4 bg-[#0052FF] text-white font-semibold rounded-xl text-lg hover:bg-[#0041CC] transition-colors shadow-lg">
+                  <button className="min-w-[180px] px-8 py-4 bg-[#00C805] text-black font-semibold rounded-xl text-lg hover:bg-[#00A004] transition-colors shadow-lg">
                     Launch App
                   </button>
                 </Link>
@@ -185,7 +185,7 @@ const Home = () => {
                 href={CONTRACTS.BASESCAN_TOKEN}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm text-gray-500 hover:text-[#0052FF] transition-colors inline-flex items-center gap-1"
+                className="text-sm text-gray-500 hover:text-[#008A04] transition-colors inline-flex items-center gap-1"
               >
                 <ExternalLink size={14} />
                 View on Basescan
@@ -195,7 +195,7 @@ const Home = () => {
                 href={CONTRACTS.TWITTER}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm text-gray-500 hover:text-[#0052FF] transition-colors inline-flex items-center gap-1"
+                className="text-sm text-gray-500 hover:text-[#008A04] transition-colors inline-flex items-center gap-1"
               >
                 <ExternalLink size={14} />
                 Twitter
@@ -229,8 +229,8 @@ const Home = () => {
               { step: '03', title: 'Treasury Grows', desc: '1% of each trade accumulates for $BASE.' },
               { step: '04', title: 'Earn Revenue', desc: `${CONTRACTS.SYMBOL || 'SEQR'} operates sequencer, rewards flow to stakers.` },
             ].map((item) => (
-              <div key={item.step} className="p-6 rounded-2xl bg-white border border-gray-200 hover:border-[#0052FF]/30 hover:shadow-md transition-all">
-                <div className="w-12 h-12 bg-[#0052FF] rounded-full flex items-center justify-center mb-4">
+              <div key={item.step} className="p-6 rounded-2xl bg-white border border-gray-200 hover:border-[#00C805]/30 hover:shadow-md transition-all">
+                <div className="w-12 h-12 bg-[#00C805] rounded-full flex items-center justify-center mb-4">
                   <span className="text-white font-bold">{item.step}</span>
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">{item.title}</h3>
@@ -254,7 +254,7 @@ const Home = () => {
               <span className="text-gray-400">— / 32 ETH</span>
             </div>
             <div className="bg-gray-200 rounded-full h-4 mb-4 max-w-md mx-auto overflow-hidden">
-              <div className="bg-[#0052FF] h-4 rounded-full transition-all duration-500" style={{ width: '0%' }}></div>
+              <div className="bg-[#00C805] h-4 rounded-full transition-all duration-500" style={{ width: '0%' }}></div>
             </div>
             <p className="text-sm text-gray-400">Progress tracking begins at launch</p>
           </div>
@@ -291,8 +291,8 @@ const Home = () => {
             {/* Solution */}
             <div className="p-8 rounded-2xl bg-white border border-gray-200">
               <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-[#0052FF]/10 flex items-center justify-center">
-                  <Sparkles className="text-[#0052FF]" size={20} />
+                <div className="w-10 h-10 rounded-lg bg-[#00C805]/10 flex items-center justify-center">
+                  <Sparkles className="text-[#008A04]" size={20} />
                 </div>
                 Our Solution
               </h3>
@@ -304,7 +304,7 @@ const Home = () => {
                   'No minimum stake - anyone can participate',
                 ].map((solution, i) => (
                   <li key={i} className="flex items-start gap-3 text-gray-600">
-                    <Check className="text-[#0052FF] flex-shrink-0 mt-0.5" size={18} />
+                    <Check className="text-[#008A04] flex-shrink-0 mt-0.5" size={18} />
                     {solution}
                   </li>
                 ))}
@@ -326,11 +326,11 @@ const Home = () => {
               <div className="text-gray-500 text-xs">Total Supply</div>
             </div>
             <div className="p-5 rounded-xl bg-white border border-gray-100 text-center">
-              <div className="text-lg font-bold text-[#0052FF] mb-1">2%</div>
+              <div className="text-lg font-bold text-[#008A04] mb-1">2%</div>
               <div className="text-gray-500 text-xs">Staking Rewards</div>
             </div>
             <div className="p-5 rounded-xl bg-white border border-gray-100 text-center">
-              <div className="text-lg font-bold text-[#0052FF] mb-1">1%</div>
+              <div className="text-lg font-bold text-[#008A04] mb-1">1%</div>
               <div className="text-gray-500 text-xs">Treasury</div>
             </div>
             <div className="p-5 rounded-xl bg-white border border-gray-100 text-center">
@@ -344,7 +344,7 @@ const Home = () => {
               <div className="text-gray-500 text-xs">Ownership</div>
             </div>
             <div className="p-5 rounded-xl bg-white border border-gray-100 text-center">
-              <div className="text-lg font-bold text-[#0052FF] mb-1">100%</div>
+              <div className="text-lg font-bold text-[#008A04] mb-1">100%</div>
               <div className="text-gray-500 text-xs">Fair Launch</div>
             </div>
           </div>
@@ -354,7 +354,7 @@ const Home = () => {
       {/* CTA */}
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-6">
-          <div className="p-12 rounded-3xl bg-[#0052FF] text-center">
+          <div className="p-12 rounded-3xl bg-[#00C805] text-center">
             <h2 className="text-3xl font-bold text-white mb-4">
               {isLive ? `Start Staking ${CONTRACTS.SYMBOL}` : 'Be First to Know'}
             </h2>
@@ -368,7 +368,7 @@ const Home = () => {
               {isLive ? (
                 <>
                   <Link to="/stake">
-                    <button className="px-8 py-4 bg-white text-[#0052FF] font-semibold rounded-xl hover:bg-gray-100 transition-colors">
+                    <button className="px-8 py-4 bg-white text-[#008A04] font-semibold rounded-xl hover:bg-gray-100 transition-colors">
                       Stake Now
                     </button>
                   </Link>
@@ -387,7 +387,7 @@ const Home = () => {
                     href={CONTRACTS.TWITTER}
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="px-8 py-4 bg-white text-[#0052FF] font-semibold rounded-xl hover:bg-gray-100 transition-colors inline-flex items-center gap-2"
+                    className="px-8 py-4 bg-white text-[#008A04] font-semibold rounded-xl hover:bg-gray-100 transition-colors inline-flex items-center gap-2"
                   >
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>

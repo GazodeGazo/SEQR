@@ -26,7 +26,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-xl bg-[#0052FF] flex items-center justify-center font-bold text-white text-lg">
+            <div className="w-10 h-10 rounded-xl bg-[#00C805] flex items-center justify-center font-bold text-black text-lg">
               S
             </div>
             <span className="text-xl font-semibold tracking-tight text-gray-900">
@@ -42,7 +42,7 @@ const Navbar = () => {
                 to={link.path}
                 className={`text-sm font-medium transition-colors duration-200 ${
                   isActive(link.path) 
-                    ? 'text-[#0052FF]' 
+                    ? 'text-[#008A04]' 
                     : 'text-gray-500 hover:text-gray-900'
                 }`}
               >
@@ -55,7 +55,7 @@ const Navbar = () => {
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="hidden md:flex items-center gap-2 px-5 py-2.5 bg-[#0052FF] text-white font-semibold rounded-xl text-sm hover:bg-[#0041CC] transition-colors shadow-soft"
+            className="hidden md:flex items-center gap-2 px-5 py-2.5 bg-[#00C805] text-black font-semibold rounded-xl text-sm hover:bg-[#00A004] transition-colors shadow-soft"
           >
             <Wallet size={16} />
             Connect
@@ -88,14 +88,14 @@ const Navbar = () => {
                   onClick={() => setIsOpen(false)}
                   className={`block font-medium transition-colors ${
                     isActive(link.path) 
-                      ? 'text-[#0052FF]' 
+                      ? 'text-[#008A04]' 
                       : 'text-gray-500 hover:text-gray-900'
                   }`}
                 >
                   {link.name}
                 </Link>
               ))}
-              <button className="w-full flex items-center justify-center gap-2 px-5 py-3 bg-[#0052FF] text-white font-semibold rounded-xl hover:bg-[#0041CC] transition-colors">
+              <button className="w-full flex items-center justify-center gap-2 px-5 py-3 bg-[#00C805] text-black font-semibold rounded-xl hover:bg-[#00A004] transition-colors">
                 <Wallet size={16} />
                 Connect Wallet
               </button>

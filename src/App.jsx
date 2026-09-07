@@ -34,10 +34,10 @@ function App() {
             <img src="/logo.svg" alt="SEQR" className="w-10 h-10" />
           </Link>
           <div className="hidden md:flex items-center gap-6">
-            <Link to="/" className={`text-sm font-medium transition-colors ${location.pathname === '/' ? 'text-[#0052FF]' : 'text-gray-600 hover:text-gray-900'}`}>Home</Link>
-            <Link to="/stake" className={`text-sm font-medium transition-colors ${location.pathname === '/stake' ? 'text-[#0052FF]' : 'text-gray-600 hover:text-gray-900'}`}>Stake</Link>
-            <Link to="/treasury" className={`text-sm font-medium transition-colors ${location.pathname === '/treasury' ? 'text-[#0052FF]' : 'text-gray-600 hover:text-gray-900'}`}>Treasury</Link>
-            <Link to="/docs" className={`text-sm font-medium transition-colors ${location.pathname === '/docs' ? 'text-[#0052FF]' : 'text-gray-600 hover:text-gray-900'}`}>Docs</Link>
+            <Link to="/" className={`text-sm font-medium transition-colors ${location.pathname === '/' ? 'text-[#008A04]' : 'text-gray-600 hover:text-gray-900'}`}>Home</Link>
+            <Link to="/stake" className={`text-sm font-medium transition-colors ${location.pathname === '/stake' ? 'text-[#008A04]' : 'text-gray-600 hover:text-gray-900'}`}>Stake</Link>
+            <Link to="/treasury" className={`text-sm font-medium transition-colors ${location.pathname === '/treasury' ? 'text-[#008A04]' : 'text-gray-600 hover:text-gray-900'}`}>Treasury</Link>
+            <Link to="/docs" className={`text-sm font-medium transition-colors ${location.pathname === '/docs' ? 'text-[#008A04]' : 'text-gray-600 hover:text-gray-900'}`}>Docs</Link>
             <ConnectButton 
               chainStatus="icon"
               showBalance={false}
@@ -65,16 +65,16 @@ function App() {
             {isLive ? (
               <span className="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full font-medium">Live on Base</span>
             ) : (
-              <span className="bg-[#0052FF]/10 text-[#0052FF] text-xs px-2 py-1 rounded-full font-medium">Coming Soon</span>
+              <span className="bg-[#00C805]/10 text-[#008A04] text-xs px-2 py-1 rounded-full font-medium">Coming Soon</span>
             )}
           </div>
           <div className="flex items-center gap-6">
-            <a href={CONTRACTS.TWITTER} target="_blank" rel="noopener noreferrer" className="text-sm text-gray-500 hover:text-[#0052FF] transition-colors">Twitter</a>
+            <a href={CONTRACTS.TWITTER} target="_blank" rel="noopener noreferrer" className="text-sm text-gray-500 hover:text-[#008A04] transition-colors">Twitter</a>
             {isLive && (
-              <a href={CONTRACTS.DEXSCREENER} target="_blank" rel="noopener noreferrer" className="text-sm text-gray-500 hover:text-[#0052FF] transition-colors">DexScreener</a>
+              <a href={CONTRACTS.DEXSCREENER} target="_blank" rel="noopener noreferrer" className="text-sm text-gray-500 hover:text-[#008A04] transition-colors">DexScreener</a>
             )}
-            <a href={CONTRACTS.BASESCAN_TOKEN} target="_blank" rel="noopener noreferrer" className="text-sm text-gray-500 hover:text-[#0052FF] transition-colors">Basescan</a>
-            <Link to="/docs" className="text-sm text-gray-500 hover:text-[#0052FF] transition-colors">Docs</Link>
+            <a href={CONTRACTS.BASESCAN_TOKEN} target="_blank" rel="noopener noreferrer" className="text-sm text-gray-500 hover:text-[#008A04] transition-colors">Basescan</a>
+            <Link to="/docs" className="text-sm text-gray-500 hover:text-[#008A04] transition-colors">Docs</Link>
           </div>
           <div className="text-gray-400 text-sm">© 2026 SEQR Protocol</div>
         </div>

@@ -8,9 +8,9 @@ export default {
     extend: {
       colors: {
         base: {
-          blue: '#0052FF',
-          'blue-dark': '#0041CC',
-          'blue-light': '#3373FF',
+          green: '#00C805',
+          'green-dark': '#00A004',
+          'green-text': '#008A04',
         },
         gray: {
           50: '#F9FAFB',

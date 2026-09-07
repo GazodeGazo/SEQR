@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-[#0052FF] flex items-center justify-center font-bold text-white text-sm">
+            <div className="w-8 h-8 rounded-lg bg-[#00C805] flex items-center justify-center font-bold text-black text-sm">
               S
             </div>
             <span className="font-semibold text-gray-900">SEQR Protocol</span>
@@ -20,7 +20,7 @@ export default function Footer() {
               href="https://x.com/SEQR_Protocol" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-sm text-gray-500 hover:text-[#0052FF] transition-colors flex items-center gap-1"
+              className="text-sm text-gray-500 hover:text-[#008A04] transition-colors flex items-center gap-1"
             >
               Twitter <ExternalLink size={12} />
             </a>
@@ -28,7 +28,7 @@ export default function Footer() {
               href="https://app.uniswap.org/swap?chain=base" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-sm text-gray-500 hover:text-[#0052FF] transition-colors flex items-center gap-1"
+              className="text-sm text-gray-500 hover:text-[#008A04] transition-colors flex items-center gap-1"
             >
               Uniswap <ExternalLink size={12} />
             </a>
@@ -36,7 +36,7 @@ export default function Footer() {
               href="https://basescan.org" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-sm text-gray-500 hover:text-[#0052FF] transition-colors flex items-center gap-1"
+              className="text-sm text-gray-500 hover:text-[#008A04] transition-colors flex items-center gap-1"
             >
               Basescan <ExternalLink size={12} />
             </a>

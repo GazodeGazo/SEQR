@@ -29,7 +29,7 @@ const Treasury = () => {
         >
           <div className="flex items-center gap-3 mb-2">
             <h1 className="text-4xl font-bold text-gray-900">Treasury</h1>
-            <span className="inline-flex items-center gap-1 px-3 py-1 bg-[#0052FF]/10 text-[#0052FF] text-sm font-medium rounded-full">
+            <span className="inline-flex items-center gap-1 px-3 py-1 bg-[#00C805]/10 text-[#008A04] text-sm font-medium rounded-full">
               Coming Soon
             </span>
           </div>
@@ -59,8 +59,8 @@ const Treasury = () => {
           >
             <div className="p-8 rounded-2xl bg-white border border-gray-200 text-center">
               {/* Icon */}
-              <div className="w-16 h-16 bg-[#0052FF]/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Clock size={32} className="text-[#0052FF]" />
+              <div className="w-16 h-16 bg-[#00C805]/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Clock size={32} className="text-[#008A04]" />
               </div>
               
               <h2 className="text-2xl font-bold text-gray-900 mb-3">Treasury Tracking Coming Soon</h2>
@@ -155,8 +155,8 @@ const Treasury = () => {
                   href="/docs"
                   className="flex items-center justify-between p-3 rounded-xl hover:bg-gray-50 transition-colors group"
                 >
-                  <span className="text-gray-700 group-hover:text-[#0052FF] font-medium">Documentation</span>
-                  <ExternalLink className="text-gray-400 group-hover:text-[#0052FF]" size={16} />
+                  <span className="text-gray-700 group-hover:text-[#008A04] font-medium">Documentation</span>
+                  <ExternalLink className="text-gray-400 group-hover:text-[#008A04]" size={16} />
                 </a>
                 <a
                   href="https://x.com/seqrbase"
@@ -164,8 +164,8 @@ const Treasury = () => {
                   rel="noopener noreferrer"
                   className="flex items-center justify-between p-3 rounded-xl hover:bg-gray-50 transition-colors group"
                 >
-                  <span className="text-gray-700 group-hover:text-[#0052FF] font-medium">Twitter</span>
-                  <ExternalLink className="text-gray-400 group-hover:text-[#0052FF]" size={16} />
+                  <span className="text-gray-700 group-hover:text-[#008A04] font-medium">Twitter</span>
+                  <ExternalLink className="text-gray-400 group-hover:text-[#008A04]" size={16} />
                 </a>
                 <a
                   href="https://basescan.org"
@@ -173,8 +173,8 @@ const Treasury = () => {
                   rel="noopener noreferrer"
                   className="flex items-center justify-between p-3 rounded-xl hover:bg-gray-50 transition-colors group"
                 >
-                  <span className="text-gray-700 group-hover:text-[#0052FF] font-medium">Basescan</span>
-                  <ExternalLink className="text-gray-400 group-hover:text-[#0052FF]" size={16} />
+                  <span className="text-gray-700 group-hover:text-[#008A04] font-medium">Basescan</span>
+                  <ExternalLink className="text-gray-400 group-hover:text-[#008A04]" size={16} />
                 </a>
               </div>
             </div>

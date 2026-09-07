@@ -186,7 +186,7 @@ const Stake = () => {
                   href={CONTRACTS.DEXSCREENER} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-[#0052FF]/10 text-[#0052FF] rounded-lg text-sm font-medium hover:bg-[#0052FF]/20 transition-colors"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-[#00C805]/10 text-[#008A04] rounded-lg text-sm font-medium hover:bg-[#00C805]/20 transition-colors"
                 >
                   <ExternalLink size={16} />
                   DexScreener
@@ -217,8 +217,8 @@ const Stake = () => {
               key={stat.label}
               className="p-6 rounded-2xl bg-white border border-gray-200 flex items-center gap-4"
             >
-              <div className="w-12 h-12 rounded-xl bg-[#0052FF]/10 flex items-center justify-center">
-                <stat.icon className="text-[#0052FF]" size={24} />
+              <div className="w-12 h-12 rounded-xl bg-[#00C805]/10 flex items-center justify-center">
+                <stat.icon className="text-[#008A04]" size={24} />
               </div>
               <div>
                 <div className={`text-2xl font-bold ${stat.value === '—' ? 'text-gray-300' : 'text-gray-900'}`}>
@@ -257,8 +257,8 @@ const Stake = () => {
                   </div>
                 </div>
 
-                <div className="p-4 rounded-xl bg-[#0052FF]/5 border border-[#0052FF]/20">
-                  <div className="text-sm text-[#0052FF] mb-1">Pending Rewards</div>
+                <div className="p-4 rounded-xl bg-[#00C805]/5 border border-[#00C805]/20">
+                  <div className="text-sm text-[#008A04] mb-1">Pending Rewards</div>
                   <div className={`text-2xl font-bold ${isLive && isConnected ? 'text-gray-900' : 'text-gray-300'}`}>
                     {isLive && isConnected ? '0' : '—'} <span className="text-base font-normal text-gray-400">ETH</span>
                   </div>
@@ -283,7 +283,7 @@ const Stake = () => {
                   onClick={handleClaimRewards}
                   className={`w-full py-3 rounded-xl font-semibold transition-colors ${
                     isLive && isConnected
-                      ? 'bg-[#0052FF] text-white hover:bg-[#0041CC]' 
+                      ? 'bg-[#00C805] text-black hover:bg-[#00A004]' 
                       : 'bg-gray-200 text-gray-500 cursor-not-allowed'
                   }`}
                   disabled={!isLive || !isConnected}
@@ -308,7 +308,7 @@ const Stake = () => {
                   onClick={() => setActiveTab('stake')}
                   className={`flex-1 py-3 px-6 rounded-lg font-semibold transition-all flex items-center justify-center gap-2 ${
                     activeTab === 'stake'
-                      ? 'bg-white text-[#0052FF] shadow-sm'
+                      ? 'bg-white text-[#008A04] shadow-sm'
                       : 'text-gray-500 hover:text-gray-700'
                   }`}
                 >
@@ -319,7 +319,7 @@ const Stake = () => {
                   onClick={() => setActiveTab('unstake')}
                   className={`flex-1 py-3 px-6 rounded-lg font-semibold transition-all flex items-center justify-center gap-2 ${
                     activeTab === 'unstake'
-                      ? 'bg-white text-[#0052FF] shadow-sm'
+                      ? 'bg-white text-[#008A04] shadow-sm'
                       : 'text-gray-500 hover:text-gray-700'
                   }`}
                 >
@@ -346,7 +346,7 @@ const Stake = () => {
                       onChange={(e) => setAmount(e.target.value)}
                       placeholder="0.00"
                       disabled={!isLive || !isConnected}
-                      className={`w-full px-4 py-4 pr-24 rounded-xl border border-gray-200 text-2xl font-semibold text-gray-900 placeholder-gray-300 focus:outline-none focus:border-[#0052FF] focus:ring-2 focus:ring-[#0052FF]/20 transition-all ${
+                      className={`w-full px-4 py-4 pr-24 rounded-xl border border-gray-200 text-2xl font-semibold text-gray-900 placeholder-gray-300 focus:outline-none focus:border-[#00C805] focus:ring-2 focus:ring-[#00C805]/20 transition-all ${
                         !isLive || !isConnected ? 'bg-gray-50 cursor-not-allowed' : ''
                       }`}
                     />
@@ -356,7 +356,7 @@ const Stake = () => {
                       disabled={!isLive || !isConnected}
                       className={`absolute right-3 top-1/2 -translate-y-1/2 px-3 py-1.5 rounded-lg text-sm font-semibold transition-colors ${
                         isLive && isConnected
-                          ? 'bg-[#0052FF]/10 text-[#0052FF] hover:bg-[#0052FF]/20' 
+                          ? 'bg-[#00C805]/10 text-[#008A04] hover:bg-[#00C805]/20' 
                           : 'bg-gray-100 text-gray-400 cursor-not-allowed'
                       }`}
                     >
@@ -418,7 +418,7 @@ const Stake = () => {
                     disabled={!isLive}
                     className={`w-full py-4 rounded-xl font-semibold text-lg transition-colors ${
                       isLive 
-                        ? 'bg-[#0052FF] text-white hover:bg-[#0041CC]' 
+                        ? 'bg-[#00C805] text-black hover:bg-[#00A004]' 
                         : 'bg-gray-200 text-gray-500 cursor-not-allowed'
                     }`}
                   >
@@ -454,7 +454,7 @@ const Stake = () => {
                       href={CONTRACTS.BASESCAN_TOKEN} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="font-mono text-sm text-[#0052FF] hover:underline"
+                      className="font-mono text-sm text-[#008A04] hover:underline"
                     >
                       {CONTRACTS.TOKEN.slice(0, 6)}...{CONTRACTS.TOKEN.slice(-4)}
                     </a>

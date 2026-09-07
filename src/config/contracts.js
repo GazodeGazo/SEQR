@@ -14,7 +14,7 @@ export const CONTRACTS = {
   CHAIN_NAME: "Base",
   RPC_URL: "https://mainnet.base.org",
   BLOCK_EXPLORER: "https://basescan.org",
-  TWITTER: "https://x.com/seqrbase",
+  TWITTER: "https://x.com/seqrh",
   DEXSCREENER: "https://dexscreener.com/base/0xB2157aF8AC961926dc11558A4C7991924c86F248",
   BASESCAN_TOKEN: "https://basescan.org/token/0xB2157aF8AC961926dc11558A4C7991924c86F248",
 };

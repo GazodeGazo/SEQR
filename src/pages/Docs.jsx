@@ -72,7 +72,7 @@ export default function Docs() {
                       onClick={() => scrollToSection(section.id)}
                       className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left transition-all ${
                         activeSection === section.id
-                          ? 'bg-[#0052FF]/10 text-[#0052FF] font-medium'
+                          ? 'bg-[#00C805]/10 text-[#008A04] font-medium'
                           : 'text-gray-600 hover:bg-gray-50'
                       }`}
                     >
@@ -88,11 +88,11 @@ export default function Docs() {
                 <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Resources</h4>
                 <div className="space-y-2">
                   <a href="https://x.com/seqrbase" target="_blank" rel="noopener noreferrer" 
-                     className="flex items-center gap-2 text-sm text-gray-500 hover:text-[#0052FF]">
+                     className="flex items-center gap-2 text-sm text-gray-500 hover:text-[#008A04]">
                     <ExternalLink size={14} /> Twitter
                   </a>
                   <a href="https://basescan.org" target="_blank" rel="noopener noreferrer"
-                     className="flex items-center gap-2 text-sm text-gray-500 hover:text-[#0052FF]">
+                     className="flex items-center gap-2 text-sm text-gray-500 hover:text-[#008A04]">
                     <ExternalLink size={14} /> Basescan
                   </a>
                 </div>
@@ -116,8 +116,8 @@ export default function Docs() {
             {/* Abstract */}
             <section id="abstract" className="mb-16 scroll-mt-28">
               <div className="flex items-center gap-3 mb-6">
-                <div className="p-2.5 bg-[#0052FF]/10 rounded-lg">
-                  <BookOpen className="text-[#0052FF]" size={20} />
+                <div className="p-2.5 bg-[#00C805]/10 rounded-lg">
+                  <BookOpen className="text-[#008A04]" size={20} />
                 </div>
                 <h2 className="text-2xl font-bold text-gray-900">Abstract</h2>
               </div>
@@ -128,7 +128,7 @@ export default function Docs() {
                 <p className="text-gray-600 leading-relaxed mt-4">
                   The protocol addresses a fundamental challenge in Layer 2 economics: while sequencers generate substantial revenue from transaction ordering and fees, participation has historically been limited to well-capitalized entities. SEQR changes this paradigm by allowing any token holder to stake and earn proportional rewards.
                 </p>
-                <div className="bg-[#0052FF]/5 border border-[#0052FF]/10 rounded-xl p-6 mt-6">
+                <div className="bg-[#00C805]/5 border border-[#00C805]/10 rounded-xl p-6 mt-6">
                   <h4 className="font-semibold text-gray-900 mb-2">Key Innovation</h4>
                   <p className="text-gray-600 text-sm">
                     SEQR transforms sequencer operation from a capital-intensive endeavor accessible only to large entities into a community-driven opportunity where everyone can participate and benefit from Base's growth.
@@ -194,7 +194,7 @@ export default function Docs() {
                     { num: '3', title: 'Collective Operation', desc: 'Once sufficient $BASE is accumulated, the treasury will stake tokens to operate a sequencer node. All generated revenue flows back to $SEQR stakers.' },
                   ].map((item) => (
                     <div key={item.num} className="flex gap-4 p-4 bg-green-50 border border-green-100 rounded-xl">
-                      <div className="w-8 h-8 bg-[#0052FF] rounded-lg flex items-center justify-center shrink-0">
+                      <div className="w-8 h-8 bg-[#00C805] rounded-lg flex items-center justify-center shrink-0">
                         <span className="text-white font-bold text-sm">{item.num}</span>
                       </div>
                       <div>
@@ -210,8 +210,8 @@ export default function Docs() {
             {/* How It Works */}
             <section id="how-it-works" className="mb-16 scroll-mt-28">
               <div className="flex items-center gap-3 mb-6">
-                <div className="p-2.5 bg-[#0052FF]/10 rounded-lg">
-                  <Layers className="text-[#0052FF]" size={20} />
+                <div className="p-2.5 bg-[#00C805]/10 rounded-lg">
+                  <Layers className="text-[#008A04]" size={20} />
                 </div>
                 <h2 className="text-2xl font-bold text-gray-900">How It Works</h2>
               </div>
@@ -223,8 +223,8 @@ export default function Docs() {
                   { step: '4', title: 'Treasury Growth', desc: '1% of transactions accumulate in treasury, building toward sequencer participation.' },
                   { step: '5', title: 'Sequencer Revenue', desc: 'When operational, sequencer fees are distributed to all $SEQR stakers.' },
                 ].map((item) => (
-                  <div key={item.step} className="flex gap-4 items-start p-4 border border-gray-200 rounded-xl hover:border-[#0052FF]/30 transition-colors">
-                    <div className="w-10 h-10 bg-[#0052FF] rounded-full flex items-center justify-center shrink-0">
+                  <div key={item.step} className="flex gap-4 items-start p-4 border border-gray-200 rounded-xl hover:border-[#00C805]/30 transition-colors">
+                    <div className="w-10 h-10 bg-[#00C805] rounded-full flex items-center justify-center shrink-0">
                       <span className="text-white font-bold">{item.step}</span>
                     </div>
                     <div>
@@ -270,10 +270,10 @@ export default function Docs() {
                     <div>
                       <div className="flex justify-between mb-2 text-sm">
                         <span className="text-gray-600">Staking Rewards</span>
-                        <span className="font-medium text-[#0052FF]">2%</span>
+                        <span className="font-medium text-[#008A04]">2%</span>
                       </div>
                       <div className="w-full h-2 bg-gray-200 rounded-full">
-                        <div className="h-full bg-[#0052FF] rounded-full" style={{ width: '66.7%' }} />
+                        <div className="h-full bg-[#00C805] rounded-full" style={{ width: '66.7%' }} />
                       </div>
                     </div>
                     <div>
@@ -294,7 +294,7 @@ export default function Docs() {
                   { label: 'LP Tokens', value: 'Burned', color: 'text-orange-600' },
                   { label: 'Ownership', value: 'Renounced', color: 'text-green-600', hasCheck: true },
                   { label: 'Team Allocation', value: '0%', color: 'text-gray-900' },
-                  { label: 'Launch Type', value: '100% Fair', color: 'text-[#0052FF]' },
+                  { label: 'Launch Type', value: '100% Fair', color: 'text-[#008A04]' },
                 ].map((item) => (
                   <div key={item.label} className="bg-white border border-gray-200 rounded-xl p-4 text-center">
                     <div className={`font-bold flex items-center justify-center gap-1 ${item.color}`}>
@@ -340,11 +340,11 @@ export default function Docs() {
               <div className="mt-6">
                 <h4 className="font-semibold text-gray-900 mb-4">Process</h4>
                 <ol className="space-y-2 text-sm text-gray-600">
-                  <li className="flex items-start gap-2"><span className="text-[#0052FF] font-medium">1.</span> Approve $SEQR spending</li>
-                  <li className="flex items-start gap-2"><span className="text-[#0052FF] font-medium">2.</span> Call stake() with desired amount</li>
-                  <li className="flex items-start gap-2"><span className="text-[#0052FF] font-medium">3.</span> Rewards accrue in real-time</li>
-                  <li className="flex items-start gap-2"><span className="text-[#0052FF] font-medium">4.</span> Call claimRewards() after cooldown</li>
-                  <li className="flex items-start gap-2"><span className="text-[#0052FF] font-medium">5.</span> Call unstake() anytime to withdraw principal</li>
+                  <li className="flex items-start gap-2"><span className="text-[#008A04] font-medium">1.</span> Approve $SEQR spending</li>
+                  <li className="flex items-start gap-2"><span className="text-[#008A04] font-medium">2.</span> Call stake() with desired amount</li>
+                  <li className="flex items-start gap-2"><span className="text-[#008A04] font-medium">3.</span> Rewards accrue in real-time</li>
+                  <li className="flex items-start gap-2"><span className="text-[#008A04] font-medium">4.</span> Call claimRewards() after cooldown</li>
+                  <li className="flex items-start gap-2"><span className="text-[#008A04] font-medium">5.</span> Call unstake() anytime to withdraw principal</li>
                 </ol>
               </div>
             </section>
@@ -397,20 +397,20 @@ export default function Docs() {
                   { phase: 3, title: 'Sequencer Activation', status: 'Future', items: ['Meet staking threshold', 'Deploy sequencer node', 'Begin operations', 'Initiate revenue distribution'] },
                   { phase: 4, title: 'Scaling & Governance', status: 'Vision', items: ['Multiple sequencer nodes', 'Cross-chain expansion', 'Community governance', 'Protocol optimization'] },
                 ].map((phase) => (
-                  <div key={phase.phase} className={`border rounded-xl p-6 ${phase.status === 'Current' ? 'border-[#0052FF] bg-[#0052FF]/5' : 'border-gray-200'}`}>
+                  <div key={phase.phase} className={`border rounded-xl p-6 ${phase.status === 'Current' ? 'border-[#00C805] bg-[#00C805]/5' : 'border-gray-200'}`}>
                     <div className="flex items-center gap-4 mb-4">
-                      <div className={`w-10 h-10 rounded-full flex items-center justify-center ${phase.status === 'Current' ? 'bg-[#0052FF] text-white' : 'bg-gray-200 text-gray-600'}`}>
+                      <div className={`w-10 h-10 rounded-full flex items-center justify-center ${phase.status === 'Current' ? 'bg-[#00C805] text-black' : 'bg-gray-200 text-gray-600'}`}>
                         <span className="font-bold">{phase.phase}</span>
                       </div>
                       <div>
                         <h3 className="font-semibold text-gray-900">{phase.title}</h3>
-                        <span className={`text-sm ${phase.status === 'Current' ? 'text-[#0052FF] font-medium' : 'text-gray-500'}`}>{phase.status}</span>
+                        <span className={`text-sm ${phase.status === 'Current' ? 'text-[#008A04] font-medium' : 'text-gray-500'}`}>{phase.status}</span>
                       </div>
                     </div>
                     <ul className="grid md:grid-cols-2 gap-2">
                       {phase.items.map((item, i) => (
                         <li key={i} className="flex items-center gap-2 text-sm text-gray-600">
-                          <ChevronRight size={14} className="text-[#0052FF]" />
+                          <ChevronRight size={14} className="text-[#008A04]" />
                           {item}
                         </li>
                       ))}

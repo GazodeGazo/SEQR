@@ -57,11 +57,13 @@ function Cube({ initialPosition, mousePos }) {
     <mesh ref={meshRef} position={initialPosition}>
       <boxGeometry args={[0.35, 0.35, 0.35]} />
       <meshStandardMaterial 
-        color="#0052FF"
+        color="#00C805"
         transparent 
-        opacity={0.85}
-        roughness={0.2}
-        metalness={0.7}
+        opacity={0.9}
+        roughness={0.35}
+        metalness={0.15}
+        emissive="#00C805"
+        emissiveIntensity={0.35}
       />
     </mesh>
   )
@@ -91,7 +93,7 @@ function Scene({ mousePos }) {
     <>
       <ambientLight intensity={0.6} />
       <directionalLight position={[10, 10, 5]} intensity={1.2} />
-      <pointLight position={[-10, -10, -5]} intensity={0.6} color="#0052FF" />
+      <pointLight position={[-10, -10, -5]} intensity={0.6} color="#00C805" />
       {cubes.map((pos, i) => (
         <Cube key={i} initialPosition={pos} mousePos={mousePos} />
       ))}

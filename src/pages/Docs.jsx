@@ -189,9 +189,9 @@ export default function Docs() {
 
                 <div className="space-y-4 mt-6 not-prose">
                   {[
-                    { num: '1', title: 'Community Treasury', desc: '1% of all $SEQR transactions accumulate in a transparent, on-chain treasury. These funds are designated for $HOOD acquisition when sequencer staking becomes available.' },
-                    { num: '2', title: 'Staking Rewards', desc: '2% of all transactions are distributed to $SEQR stakers as ETH rewards. Rewards are proportional to stake size and distributed continuously.' },
-                    { num: '3', title: 'Collective Operation', desc: 'Once sufficient $HOOD is accumulated, the treasury will stake tokens to operate a sequencer node. All generated revenue flows back to $SEQR stakers.' },
+                    { num: '1', title: 'Community Treasury', desc: '1% of all $SQR transactions accumulate in a transparent, on-chain treasury. These funds are designated for $HOOD acquisition when sequencer staking becomes available.' },
+                    { num: '2', title: 'Staking Rewards', desc: '2% of all transactions are distributed to $SQR stakers as ETH rewards. Rewards are proportional to stake size and distributed continuously.' },
+                    { num: '3', title: 'Collective Operation', desc: 'Once sufficient $HOOD is accumulated, the treasury will stake tokens to operate a sequencer node. All generated revenue flows back to $SQR stakers.' },
                   ].map((item) => (
                     <div key={item.num} className="flex gap-4 p-4 bg-green-50 border border-green-100 rounded-xl">
                       <div className="w-8 h-8 bg-[#00C805] rounded-lg flex items-center justify-center shrink-0">
@@ -217,11 +217,11 @@ export default function Docs() {
               </div>
               <div className="space-y-4">
                 {[
-                  { step: '1', title: 'Acquire $SEQR', desc: 'Purchase tokens on Uniswap (Robinhood). A 3% transaction tax funds the ecosystem.' },
-                  { step: '2', title: 'Stake Tokens', desc: 'Deposit $SEQR into the staking contract. No minimum stake required.' },
+                  { step: '1', title: 'Acquire $SQR', desc: 'Purchase tokens on Uniswap (Robinhood). A 3% transaction tax funds the ecosystem.' },
+                  { step: '2', title: 'Stake Tokens', desc: 'Deposit $SQR into the staking contract. No minimum stake required.' },
                   { step: '3', title: 'Earn ETH Rewards', desc: 'Receive proportional ETH rewards from the 2% staking allocation. Claim after 7-day cooldown.' },
                   { step: '4', title: 'Treasury Growth', desc: '1% of transactions accumulate in treasury, building toward sequencer participation.' },
-                  { step: '5', title: 'Sequencer Revenue', desc: 'When operational, sequencer fees are distributed to all $SEQR stakers.' },
+                  { step: '5', title: 'Sequencer Revenue', desc: 'When operational, sequencer fees are distributed to all $SQR stakers.' },
                 ].map((item) => (
                   <div key={item.step} className="flex gap-4 items-start p-4 border border-gray-200 rounded-xl hover:border-[#00C805]/30 transition-colors">
                     <div className="w-10 h-10 bg-[#00C805] rounded-full flex items-center justify-center shrink-0">
@@ -250,8 +250,8 @@ export default function Docs() {
                   <h3 className="font-semibold text-gray-900 mb-4">Token Details</h3>
                   <div className="space-y-3 text-sm">
                     {[
-                      ['Token Name', 'SEQR Protocol'],
-                      ['Symbol', '$SEQR'],
+                      ['Token Name', 'SQR'],
+                      ['Symbol', '$SQR'],
                       ['Network', 'Robinhood'],
                       ['Total Supply', '1,000,000,000'],
                       ['Decimals', '18'],
@@ -340,7 +340,7 @@ export default function Docs() {
               <div className="mt-6">
                 <h4 className="font-semibold text-gray-900 mb-4">Process</h4>
                 <ol className="space-y-2 text-sm text-gray-600">
-                  <li className="flex items-start gap-2"><span className="text-[#008A04] font-medium">1.</span> Approve $SEQR spending</li>
+                  <li className="flex items-start gap-2"><span className="text-[#008A04] font-medium">1.</span> Approve $SQR spending</li>
                   <li className="flex items-start gap-2"><span className="text-[#008A04] font-medium">2.</span> Call stake() with desired amount</li>
                   <li className="flex items-start gap-2"><span className="text-[#008A04] font-medium">3.</span> Rewards accrue in real-time</li>
                   <li className="flex items-start gap-2"><span className="text-[#008A04] font-medium">4.</span> Call claimRewards() after cooldown</li>
@@ -365,11 +365,11 @@ export default function Docs() {
               <div className="bg-emerald-50 border border-emerald-100 rounded-xl p-6">
                 <h4 className="font-semibold text-emerald-900 mb-4">Strategy</h4>
                 <ol className="space-y-2 text-sm text-emerald-800">
-                  <li className="flex items-start gap-2"><span className="font-medium">1.</span> Collect 1% of all $SEQR transactions</li>
+                  <li className="flex items-start gap-2"><span className="font-medium">1.</span> Collect 1% of all $SQR transactions</li>
                   <li className="flex items-start gap-2"><span className="font-medium">2.</span> Hold as ETH/stablecoins for stability</li>
                   <li className="flex items-start gap-2"><span className="font-medium">3.</span> Convert to $HOOD when token launches</li>
                   <li className="flex items-start gap-2"><span className="font-medium">4.</span> Stake $HOOD for sequencer operation rights</li>
-                  <li className="flex items-start gap-2"><span className="font-medium">5.</span> Distribute sequencer revenue to $SEQR stakers</li>
+                  <li className="flex items-start gap-2"><span className="font-medium">5.</span> Distribute sequencer revenue to $SQR stakers</li>
                 </ol>
               </div>
 
@@ -500,9 +500,9 @@ export default function Docs() {
               <div className="space-y-4">
                 {[
                   { q: 'What is SEQR?', a: 'SEQR (Sequencer Equity Quota Rewards) is a protocol that enables fractional ownership of Robinhood sequencer infrastructure through community pooling.' },
-                  { q: 'How do I earn rewards?', a: 'Buy $SEQR on Uniswap, stake your tokens in the staking contract, and earn ETH rewards proportional to your stake from the 2% trading tax.' },
+                  { q: 'How do I earn rewards?', a: 'Buy $SQR on Uniswap, stake your tokens in the staking contract, and earn ETH rewards proportional to your stake from the 2% trading tax.' },
                   { q: 'When will SEQR operate a sequencer?', a: 'This depends on Robinhood\'s sequencer decentralization timeline and $HOOD token availability. The treasury is actively accumulating funds.' },
-                  { q: 'Is there a minimum stake?', a: 'No. You can stake any amount of $SEQR.' },
+                  { q: 'Is there a minimum stake?', a: 'No. You can stake any amount of $SQR.' },
                   { q: 'How often can I claim rewards?', a: 'You can claim rewards every 7 days after your last stake or claim action.' },
                   { q: 'Can I unstake anytime?', a: 'Yes. Your principal is never locked. Only reward claims have a cooldown.' },
                   { q: 'What happens to the 3% tax?', a: '2% goes to staking rewards (ETH) and 1% goes to the treasury for $HOOD acquisition.' },

@@ -159,7 +159,7 @@ const Treasury = () => {
                   <ExternalLink className="text-gray-400 group-hover:text-[#008A04]" size={16} />
                 </a>
                 <a
-                  href="https://x.com/SeqrOnRH"
+                  href="https://x.com/seqr_rh"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-between p-3 rounded-xl hover:bg-gray-50 transition-colors group"

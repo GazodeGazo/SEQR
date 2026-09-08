@@ -87,7 +87,7 @@ export default function Docs() {
               <div className="mt-8 pt-8 border-t border-gray-100">
                 <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Resources</h4>
                 <div className="space-y-2">
-                  <a href="https://x.com/SeqrOnRH" target="_blank" rel="noopener noreferrer" 
+                  <a href="https://x.com/seqr_rh" target="_blank" rel="noopener noreferrer" 
                      className="flex items-center gap-2 text-sm text-gray-500 hover:text-[#008A04]">
                     <ExternalLink size={14} /> Twitter
                   </a>
